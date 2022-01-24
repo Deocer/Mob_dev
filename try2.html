@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+   integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+   crossorigin=""/>
+	<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+   crossorigin=""></script>
+    <link type="text/css" rel="stylesheet" href="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.css" />
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+ 	<script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" data-auto-a11y="true"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Dongle">
+	<title></title>
+</head>
+<script type="text/javascript">
+  
+</script>
+<style type="text/css">
+      body {
+        font-family: 'Dongle', serif;
+      }
+
+.progress{
+    width: 100px;
+    height: 100px;
+    line-height: 150px;
+    background: none;
+    margin: 0 auto;
+    box-shadow: none;
+    position: relative;
+}
+.progress:after{
+    content: "";
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 12px solid #fff;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.progress > span{
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+}
+.progress .progress-left{
+    left: 0;
+}
+.progress .progress-bar{
+    width: 100%;
+    height: 100%;
+    background: none;
+    border-width: 12px;
+    border-style: solid;
+    position: absolute;
+    top: 0;
+}
+.progress .progress-left .progress-bar{
+    left: 100%;
+    border-top-right-radius: 80px;
+    border-bottom-right-radius: 80px;
+    border-left: 0;
+    -webkit-transform-origin: center left;
+    transform-origin: center left;
+}
+.progress .progress-right{
+    right: 0;
+}
+.progress .progress-right .progress-bar{
+    left: -100%;
+    border-top-left-radius: 80px;
+    border-bottom-left-radius: 80px;
+    border-right: 0;
+    -webkit-transform-origin: center right;
+    transform-origin: center right;
+    animation: loading-1 1.8s linear forwards;
+}
+.progress .progress-value{
+    width: 90%;
+    height: 90%;
+    border-radius: 50%;
+    font-size: 24px;
+    color: #22ee5b;
+    line-height: 135px;
+    text-align: center;
+    position: absolute;
+    left: 5%;
+    bottom: 20px;
+}
+.progress.blue .progress-bar{
+    border-color: #22ee5b;
+}
+.progress.blue .progress-left .progress-bar{
+    animation: loading-2 1.5s linear forwards 1.8s;
+}
+
+
+
+
+</style>
+<body>
+
+
+
+
+<div class="container-fluid text-center" style="background-color:#22ee5b">
+		<h1 class="text-primary container-fluid text-light"  style="background-color:#22ee5b">ADMIN PANEL</h1>
+	</div>
+
+<div class="container-fluid text-center text-light">
+ <ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item text-light" role="presentation">
+    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Announcements</button>
+  </li>
+  <li class="nav-item text-light" role="presentation">
+    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Evac Sites </button>
+  </li>
+  <li class="nav-item text-light" role="presentation">
+    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Flood History</button>
+  </li>
+</ul> 
+</div>	
+
+
+
+
+<div class="tab-content" id="myTabContent">
+
+
+  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+        <form class="row g-3 p-5">
+          <h1 id="raedit"></h1>
+          <div class="col-md-6">
+            <label for="inputEmail4" class="form-label">Change tweet</label>
+            <input type="email" id="tw" class="form-control" >
+          </div>
+          <div class="col-md-6">
+            <label for="inputEmail4" class="form-label">Change Livefeed link</label>
+            <input type="email" id="fb" class="form-control" >
+          </div>
+
+          <div class="col-12">
+            <button type="button" id="addtwit" class="btn btn-primary">Save Tweet Changes</button>
+            <button type="button" id="addfb" class="btn btn-primary">Save Livefeed Changes</button>
+          </div>
+        </form> 
+
+  </div>
+
+
+
+  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+
+  <div class="row">
+    <div class="col">
+ 
+    <form class="row g-3 p-5">
+      <h1 id="title">ADD AN EVAC SITE</h1>
+      <h1 id="ed"></h1>
+      <h1 id="evactitle"></h1>
+      <div class="col-md-6">
+        <label for="inputEmail4" class="form-label">Name</label>
+        <input type="email" id="name" class="form-control" id="inputEmail4">
+      </div>
+      <div class="col-md-6">
+        <label for="inputPassword4" class="form-label">Image Source</label>
+        <input type="text" id="src" class="form-control">
+      </div>
+      <div class="col-md-3">
+        <label for="inputCity" class="form-label">Lat</label>
+        <input type="text" id="lat"  class="form-control" >
+      </div>
+      <div class="col-md-3">
+        <label for="inputCity" class="form-label">Lot</label>
+        <input type="text" id="lot" class="form-control">
+      </div>
+      <div class="col-md-4">
+        <label for="inputState" class="form-label">Type</label>
+        <select id="type" class="form-select">
+          <option value="school">school</option>
+          <option value="hall">hall</option>
+        </select>
+      </div>
+      <div class="col-md-2">
+        <label class="form-label">Capacity</label>
+        <input type="text" id="cap" class="form-control">
+      </div>
+ 
+      <div class="col-12">
+        <button type="button" id="add" class="btn btn-primary">Add Evac Site</button>
+        <button type="button" id="edit" class="btn btn-primary">Save Evac Site</button>
+      </div>
+    </form>
+
+    </div>
+    <div class="col">
+ 
+   <table class="table" id="loctab">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Handle</th>
+        <th scope="col">Last</th>
+        <th scope="col">Handle</th>
+      </tr>
+    </thead>
+    <tbody  id="evactable">
+     
+    </tbody>
+  </table> 
+  <input type="text" name="" id="sites">
+  <input type="text" name="" id="num">        
+
+    </div>
+  </div>
+
+  </div>
+
+
+  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+
+ <div class="row">
+    <div class="col">
+    <h1 id="title" class="p-2">Flooding Events</h1>
+    <button id="ard">Add RainFall data</button>
+    <button id="atd">Add Typhoon data</button>  
+
+    <form class="row g-3 p-5" id="rainform">
+      <h1 id="raedit"></h1>
+      <div class="col-md-6">
+        <label for="inputEmail4" class="form-label">Cause</label>
+        <input type="email" id="rcause" class="form-control" value="Heavy Rainfall" readonly>
+      </div>
+      <div class="col-md-6">
+        <label for="inputEmail4" class="form-label">Areas</label>
+        <input type="email" id="rarea" class="form-control" >
+      </div>
+      <div class="col-md-3">
+        <label for="inputCity" class="form-label">Timeframe</label>
+        <input type="text" id="rtime"  class="form-control" >
+      </div>
+      <div class="col-md-3">
+        <label for="inputCity" class="form-label">Water level</label>
+        <input type="text" id="rlvl" class="form-control">
+      </div>
+      <div class="col-md-4">
+        <label for="inputState" class="form-label">Alarm Level</label>
+        <select id="ralvl" class="form-select">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>
+      </div>
+ 
+      <div class="col-12">
+        <button type="button" id="hadd" class="btn btn-primary">Add Rain Flood Data</button>
+        <button type="button" id="hedit" class="btn btn-primary">Save Changes</button>
+      </div>
+    </form>
+
+    <form class="row g-3 p-5" id="tyform">
+       <h1 id="tyedit"></h1>
+      <div class="col-md-6">
+        <label for="inputEmail4" class="form-label">Typhoon</label>
+        <input type="email" id="tcause" class="form-control" id="inputEmail4" value="Typhoon" readonly>
+      </div>
+      <div class="col-md-6">
+        <label for="inputPassword4" class="form-label">Name</label>
+        <input type="text" id="tname" class="form-control">
+      </div>
+      <div class="col-md-6">
+        <label for="inputEmail4" class="form-label">Wind Speed</label>
+        <input type="email" id="twind" class="form-control" >
+      </div>
+      <div class="col-md-6">
+        <label for="inputPassword4" class="form-label">Pressure</label>
+        <input type="text" id="tpressure" class="form-control">
+      </div>
+      <div class="col-md-6">
+        <label for="inputEmail4" class="form-label">Areas</label>
+        <input type="email" id="tareas" class="form-control" >
+      </div>
+      <div class="col-md-6">
+        <label for="inputPassword4" class="form-label">Formed</label>
+        <input type="text" id="form" class="form-control">
+      </div>
+      <div class="col-md-3">
+        <label for="inputCity" class="form-label">Dissipated</label>
+        <input type="text" id="diss"  class="form-control" >
+      </div>
+      <div class="col-md-3">
+        <label for="inputCity" class="form-label">Timeframe</label>
+        <input type="text" id="ttime"  class="form-control" >
+      </div>
+      <div class="col-md-3">
+        <label for="inputCity" class="form-label">Water level</label>
+        <input type="text" id="tlvl" class="form-control">
+      </div>
+      <div class="col-md-4">
+        <label for="inputState" class="form-label">Alarm Level</label>
+        <select id="talvl" class="form-select">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>
+      </div>
+ 
+      <div class="col-12">
+        <button type="button" id="tadd" class="btn btn-primary">Add Typhoon Data</button>
+        <button type="button" id="tedit" class="btn btn-primary">Save Changes</button>
+      </div>
+    </form>
+
+    </div>
+    <div class="col">
+ 
+   <table class="table" id="loctab">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Handle</th>
+        <th scope="col">Last</th>
+      </tr>
+    </thead>
+    <tbody  id="raintable">
+     
+    </tbody>
+  </table>
+
+   <table class="table" id="loctab">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Handle</th>
+        <th scope="col">Last</th>
+        <th scope="col">Handle</th>
+        <th scope="col">Handle</th>
+        <th scope="col">Last</th>
+        <th scope="col">Handle</th>
+        <th scope="col">Handle</th>
+        <th scope="col">Last</th>
+        <th scope="col">Handle</th>
+      </tr>
+    </thead>
+    <tbody  id="typhoontable">
+     
+    </tbody>
+  </table>  
+  <input type="text" name="" id="tt">
+  <input type="text" name="" id="curr">        
+
+    </div>
+  </div>
+
+
+  </div>
+</div>
+
+
+</body>
+<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-database.js"></script> 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+
+//var twitter = 'https://twitter.com/MarikinaPIO/status/1472567032411348993?ref_src=twsrc%5Etfw';
+
+//var fb = '<iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fwatch%2F%3Fv%3D567032957633369&width=400&show_text=true&height=300&appId" width="400" height="300" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>';
+
+var config = {
+apiKey: "AIzaSyCIGnMrpWKrslU6fwYYvERuMGAY7ZfQRTg",
+authDomain: "evac-marikina.firebaseapp.com",
+databaseURL: "https://evac-marikina-default-rtdb.asia-southeast1.firebasedatabase.app/"
+};
+firebase.initializeApp(config);
+
+// Get a reference to the database service
+var database = firebase.database();
+
+function writeFbData(Id,imageUrl) {
+  firebase.database().ref('fb/' + Id).set({
+    data : imageUrl
+  });
+}
+
+function writetwitterData(Id,imageUrl) {
+  firebase.database().ref('twit/' + Id).set({
+    data : imageUrl
+  });
+}
+
+function writeSitesData(Id,name,cap,lat,lot,src,type) {
+  firebase.database().ref('sites/' + Id).set({
+    name: name,
+    cap: cap,
+    lat: lat,
+    lot: lot,
+    name: name,
+    src: src,
+    type: type
+  });
+}
+
+function writeTyphoonData(Id,name,F,D,wind,pressure,lvl,alarm,time,src,ars) {
+  firebase.database().ref('typhoons/' + Id).set({
+    Cause:"Typhoon",
+    name:name, 
+    Formed:F, 
+    Dissipated:D ,
+    winds: wind,
+    pressure : pressure, 
+    level: lvl, 
+    Alarm_level: alarm,
+    Timeframe:time,
+    Source:src,
+    Areas:ars
+  });
+}
+
+function writeHeavyrainData(Id,lvl,alarm,time,src,ars) {
+  firebase.database().ref('typhoons/' + Id).set({
+    Cause:"Heavy Rainfall",
+    level:lvl, 
+    Alarm_level:alarm,
+    Timeframe:time,
+    Source:src,
+    Areas:ars
+  });
+}
+
+writeFbData(1, fb);
+writetwitterData(1, twitter);
+//writeSitesData(31, "imageUrl","w",232,21,21,"ewq","school");
+//writeTyphoonData(22,'ewe',11,1,1,1,1,1,1,1,1);
+//writeHeavyrainData(23,1,1,1,1,1);
+
+
+var leadsRef = database.ref('sites');
+leadsRef.on('value', function(snapshot) {
+    snapshot.forEach(function(childSnapshot) {
+      var childData = childSnapshot.val();
+      //console.log(childData);
+    });
+});
+</script>
+<script type="text/javascript">
+$("#edit").hide();
+$("#sites").hide();
+$("#ed").hide();
+$("#tyform").hide();
+$("#rainform").hide();
+$("#raedit").hide();
+$("#tyedit").hide();
+$("#tadd").hide();
+$("#hadd").hide();
+$("#tt").hide();
+$("#curr").hide();
+//$('#thisdiv').load(document.URL +  ' #thisdiv');
+
+
+
+  function ajaxcall() {
+      $.ajax({
+        url: 'https://evac-marikina-default-rtdb.asia-southeast1.firebasedatabase.app/.json?orderBy="$key"&print=pretty',
+        type: "GET",
+        success: function (res) {
+        // Decoding the response to native JS object
+        var sites = JSON.stringify(res);
+        var jsob = JSON.parse(sites);
+        console.log(jsob);
+        const lmt = jsob.sites.length;
+        $("#sites").val(lmt);
+        for (var i = 0; i < lmt; i++) {
+          var num = i + 1;
+          var twit = document.createElement("tr");
+          twit.id = i;                  
+          twit.innerHTML = 
+          '<th scope="col">'+num+'</th>'+
+          '<th scope="col">'+jsob.sites[i].name+'</th>'+
+          '<th scope="col">'+jsob.sites[i].type+'</th>'+
+          '<th scope="col">'+jsob.sites[i].cap+'</th>'+
+          '<th scope="col">'+jsob.sites[i].src+'</th>'+
+          '<th scope="col"><button id="'+i+'">DELETE</button></th>'+
+           '<th scope="col"><button id="'+i+'" onclick="fillform('+
+           '`'+jsob.sites[i].name+'`'+','+'`'+jsob.sites[i].src+'`'+','+'`'+jsob.sites[i].lat+'`'+','+'`'+jsob.sites[i].lot+'`'+','+'`'+jsob.sites[i].type+'`'+','+'`'+jsob.sites[i].cap+'`'+','+'`'+i+'`'+
+           ')">EDIT</button></th>';
+
+           document.getElementById("evactable").appendChild(twit);
+
+
+           $('#'+i).mouseenter(function () {
+              $( this ).css("background-color", "whitesmoke");
+              $( this ).css("color", "green");
+           });
+
+           $('#'+i).mouseleave(function () {
+              $( this ).css("background-color", "white");
+              $( this ).css("color", "black");
+          });
+
+
+        }
+
+        },
+        error: function(error) {
+        alert("error: "+error);
+        }
+    });
+  }
+
+  function tajaxcall() {
+      $.ajax({
+        url: 'https://evac-marikina-default-rtdb.asia-southeast1.firebasedatabase.app/.json?orderBy="$key"&print=pretty',
+        type: "GET",
+        success: function (res) {
+        // Decoding the response to native JS object
+        var sites = JSON.stringify(res);
+        var jsob = JSON.parse(sites);
+        console.log(jsob.typhoons);
+        const all = jsob.typhoons.length;
+        $("#tt").val(all);
+        for (var i = 0; i < all; i++) {
+          console.log(jsob.typhoons[i].Cause)
+          if (jsob.typhoons[i].Cause === "Heavy Rainfall") {
+
+            var num = i + 1;
+            var twit = document.createElement("tr");
+            twit.id ="r"+ i;                  
+            twit.innerHTML = 
+            '<th scope="col">'+num+'</th>'+
+            '<th scope="col">'+jsob.typhoons[i].Cause+'</th>'+
+            '<th scope="col">'+jsob.typhoons[i].Timeframe+'</th>'+
+            '<th scope="col">'+jsob.typhoons[i].level+'</th>'+
+            '<th scope="col">'+jsob.typhoons[i].Alarm_level+'</th>'+
+            '<th scope="col">'+jsob.typhoons[i].Areas+'</th>'+
+            '<th scope="col"><button id="'+i+'" onclick="rainform('+
+            '`'+jsob.typhoons[i].Cause+'`'+','+'`'+jsob.typhoons[i].Timeframe+'`'+','+'`'+jsob.typhoons[i].level+'`'+','+'`'+jsob.typhoons[i].Areas+'`'+','+'`'+jsob.typhoons[i].Alarm_level+'`'+','+'`'+i+'`'+
+            ')">EDIT</button></th>';
+
+             document.getElementById("raintable").appendChild(twit);
+
+
+             $('#r'+i).mouseenter(function () {
+                $( this ).css("background-color", "whitesmoke");
+                $( this ).css("color", "green");
+             });
+
+             $('#r'+i).mouseleave(function () {
+                $( this ).css("background-color", "white");
+                $( this ).css("color", "black");
+            });
+
+
+          }else if (jsob.typhoons[i].Cause === "Typhoon") {
+            var num = i + 1;
+            var twit = document.createElement("tr");
+            twit.id ="t"+ i;                  
+            twit.innerHTML = 
+            '<th scope="col">'+num+'</th>'+
+            '<th scope="col">'+jsob.typhoons[i].Cause+'</th>'+
+            '<th scope="col">'+jsob.typhoons[i].name+'</th>'+
+            '<th scope="col">'+jsob.typhoons[i].winds+'</th>'+
+            '<th scope="col">'+jsob.typhoons[i].pressure+'</th>'+
+            '<th scope="col">'+jsob.typhoons[i].Formed+'</th>'+
+            '<th scope="col">'+jsob.typhoons[i].Dissipated+'</th>'+
+            '<th scope="col">'+jsob.typhoons[i].Timeframe+'</th>'+
+            '<th scope="col">'+jsob.typhoons[i].Alarm_level+'</th>'+
+            '<th scope="col">'+jsob.typhoons[i].level+'</th>'+
+            '<th scope="col">'+jsob.typhoons[i].Areas+'</th>'+
+            '<th scope="col"><button id="'+i+'" onclick="typhoonform('+
+           '`'+jsob.typhoons[i].Cause+'`'+','+'`'+jsob.typhoons[i].name+'`'+','+'`'+jsob.typhoons[i].winds+'`'+','+'`'+jsob.typhoons[i].pressure+'`'+','+'`'+jsob.typhoons[i].Cause+'`'+','+'`'+jsob.typhoons[i].Formed+'`'+','+'`'+jsob.typhoons[i].Dissipated+'`'+','+'`'+jsob.typhoons[i].Timeframe+'`'+','+'`'+jsob.typhoons[i].level+'`'+','+'`'+jsob.typhoons[i].Areas+'`'+','+'`'+i+'`'+
+           ')">EDIT</button></th>';
+
+             document.getElementById("typhoontable").appendChild(twit);
+
+
+             $('#t'+i).mouseenter(function () {
+                $( this ).css("background-color", "whitesmoke");
+                $( this ).css("color", "green");
+             });
+
+             $('#t'+i).mouseleave(function () {
+                $( this ).css("background-color", "white");
+                $( this ).css("color", "black");
+            });
+          }
+
+        }
+
+        },
+        error: function(error) {
+        alert("error: "+error);
+        }
+    });
+  }
+
+function fillform(name,src,lat,lot,type,cap,num){
+  $("#name").val(name);
+  $("#src").val(src);
+  $("#lat").val(lat);
+  $("#lot").val(lot);
+  $("#type").val(type);
+  $("#cap").val(cap);
+  $("#num").val(num);
+  $("#add").hide();
+  $("#edit").show();
+  $("#ed").html("Edit "+name)
+  $("#ed").show();
+  $("#title").hide();
+}
+
+function rainform(cause,time,lvl,areas,alvl,num){
+  $("#raedit").show();
+  $("#raedit").html("Edit "+time+" Rainfall data");
+  $("#tyedit").hide();
+  $("#rcause").val(cause);
+  $("#rtime").val(time);
+  $("#rlvl").val(lvl);
+  $("#rarea").val(areas);
+  $("#ralvl").val(alvl);
+  $("#curr").val(num);
+  $("#tyform").hide();
+  $("#rainform").show();
+  $("#tadd").hide();
+  $("#hadd").hide();
+  $("#hedit").show();
+}
+
+function typhoonform(cause,name,winds,pressure,formed,diss,time,alvl,lvl,areas,num){
+  $("#tyedit").show();
+  $("#tyedit").html("Edit "+name+"'s Typhoon Data");
+  $("#raedit").hide();
+  $("#tcause").val(cause);
+  $("#tname").val(name);
+  $("#twind").val(winds);
+  $("#tpressure").val(pressure);
+  $("#form").val(formed);
+  $("#diss").val(diss);
+  $("#ttime").val(time);
+  $("#talvl").val(alvl);
+  $("#tlvl").val(lvl);
+  $("#tareas").val(areas);
+  $("#curr").val(num);
+  $("#tyform").show();
+  $("#rainform").hide();
+  $("#tadd").hide();
+  $("#hadd").hide();
+  $("#tedit").show();
+}
+
+$('#hadd').click(function () {
+  var time = $("#rtime").val();
+  var waterlvl = $("#rlvl").val();
+  var areas = $("#rarea").val();
+  var alarm = $("#ralvl").val();
+  var id = $("#tt").val();
+  writeHeavyrainData(id,waterlvl,alarm,time,'',areas);
+  $("#raintable").html("");
+  $("#typhoontable").html("");
+  $("#rcause").val('');
+  $("#rtime").val('');
+  $("#rlvl").val('');
+  $("#rarea").val('');
+  $("#ralvl").val('');
+  $("#curr").val('');
+  tajaxcall();
+});
+
+$('#hedit').click(function () {
+  var time = $("#rtime").val();
+  var waterlvl = $("#rlvl").val();
+  var areas = $("#rarea").val();
+  var alarm = $("#ralvl").val();
+  var id = $("#curr").val();
+  writeHeavyrainData(id,waterlvl,alarm,time,'',areas);
+  $("#raintable").html("");
+  $("#typhoontable").html("");
+  $("#raintable").html("");
+  $("#typhoontable").html("");
+  $("#rcause").val('');
+  $("#rtime").val('');
+  $("#rlvl").val('');
+  $("#rarea").val('');
+  $("#ralvl").val('');
+  $("#curr").val('');
+  tajaxcall();
+
+});
+
+$('#tadd').click(function () {
+  var nm = $("#tname").val();
+  var wind = $("#twind").val();
+  var pres = $("#tpressure").val();
+  var form = $("#form").val();
+  var dis = $("#diss").val();
+  var time = $("#ttime").val();
+  var alarm = $("#talvl").val();
+  var wlvl = $("#tlvl").val();
+  var areas = $("#tareas").val();
+  var id = $("#tt").val();
+  writeTyphoonData(id,nm,form,dis,wind,pres,wlvl,alarm,time,'',areas)
+  $("#tcause").val('');
+  $("#tname").val('');
+  $("#twind").val('');
+  $("#tpressure").val('');
+  $("#form").val('');
+  $("#diss").val('');
+  $("#ttime").val('');
+  $("#talvl").val('');
+  $("#tlvl").val('');
+  $("#tareas").val('');
+  $("#curr").val('');
+  $("#raintable").html("");
+  $("#typhoontable").html("");
+  tajaxcall();
+});
+
+$('#tedit').click(function () {
+  var nm = $("#tname").val();
+  var wind = $("#twind").val();
+  var pres = $("#tpressure").val();
+  var form = $("#form").val();
+  var dis = $("#diss").val();
+  var time = $("#ttime").val();
+  var alarm = $("#talvl").val();
+  var wlvl = $("#tlvl").val();
+  var areas = $("#tareas").val();
+  var id = $("#curr").val();
+  writeTyphoonData(id,nm,form,dis,wind,pres,wlvl,alarm,time,'',areas)
+  $("#tcause").val('');
+  $("#tname").val('');
+  $("#twind").val('');
+  $("#tpressure").val('');
+  $("#form").val('');
+  $("#diss").val('');
+  $("#ttime").val('');
+  $("#talvl").val('');
+  $("#tlvl").val('');
+  $("#tareas").val('');
+  $("#curr").val('');
+  $("#raintable").html("");
+  $("#typhoontable").html("");
+  tajaxcall();
+
+});
+
+$('#addtwit').click(function () {
+   var n = $("#tw").val();
+   writetwitterData(1, n);
+});
+
+$('#addfb').click(function () {
+  var n = $("#fb").val();
+   writeFbData(1, n);
+});
+
+$('#edit').click(function () {
+   var n = $("#name").val();
+   var s = $("#src").val();
+   var lt = $("#lat").val();
+   var ln = $("#lot").val();
+   var t = $("#type").val();
+   var c = $("#cap").val();
+   var lmt = $("#num").val();
+   $("#ed").hide();
+   writeSitesData(lmt, n,c,lt,ln,s,t);
+   $("#evactable").html("");
+   $("#add").show();
+   $("#edit").hide();
+   $("#title").show();
+   $("#name").val('');
+   $("#src").val('');
+   $("#lat").val('');
+   $("#lot").val('');
+   $("#cap").val('');
+   $("#num").val('');
+   ajaxcall();
+});
+
+$('#add').click(function () {
+   var n = $("#name").val();
+   var s = $("#src").val();
+   var lt = $("#lat").val();
+   var ln = $("#lot").val();
+   var t = $("#type").val();
+   var c = $("#cap").val();
+   var lmt = $("#sites").val();
+   $("#ed").hide();
+   writeSitesData(lmt, n,c,lt,ln,s,t);
+   $("#evactable").html("");
+   $("#add").show();
+   $("#edit").hide();
+   $("#title").show();
+   $("#name").val('');
+   $("#src").val('');
+   $("#lat").val('');
+   $("#lot").val('');
+   $("#cap").val('');
+   $("#num").val('');
+   ajaxcall();
+});
+
+$('#ard').click(function () {
+  $("#tedit").hide();
+  $("#hedit").hide();
+  $("#hadd").show();
+  $("#raedit").hide();
+  $("#tyform").hide();
+  $("#rainform").show();
+  $("#tcause").val('');
+  $("#tname").val('');
+  $("#twind").val('');
+  $("#tpressure").val('');
+  $("#form").val('');
+  $("#diss").val('');
+  $("#ttime").val('');
+  $("#talvl").val('');
+  $("#tlvl").val('');
+  $("#tareas").val('');
+  $("#rcause").val('');
+  $("#rtime").val('');
+  $("#rlvl").val('');
+  $("#rarae").val('');
+  $("#ralvl").val('');
+});
+
+$('#atd').click(function () {
+  $("#tedit").hide();
+  $("#hedit").hide();
+  $("#tadd").show();
+  $("#tyedit").hide();
+  $("#raedit").hide();
+  $("#tyform").show();
+  $("#rainform").hide();
+  $("#rcause").val('');
+  $("#rtime").val('');
+  $("#rlvl").val('');
+  $("#rarae").val('');
+  $("#ralvl").val('');
+  $("#tcause").val('');
+  $("#tname").val('');
+  $("#twind").val('');
+  $("#tpressure").val('');
+  $("#form").val('');
+  $("#diss").val('');
+  $("#ttime").val('');
+  $("#talvl").val('');
+  $("#tlvl").val('');
+  $("#tareas").val('');
+});
+
+ajaxcall();
+tajaxcall();
+</script>
+
+</html>

@@ -1,0 +1,38 @@
+{"typhoons":[    
+    {"Cause":"Heavy Rainfall", 
+    "level":16.2, 
+    "Alarm level":2,
+    "Timeframe":"Jan 21 2021",
+    "Source":"https://news.abs-cbn.com/video/news/01/21/21/ilang-residente-sa-marikina-city-binaha-sa-pag-apaw-ng-ilog",
+    "Areas" :"Sto. Niño, Nangka, Jesus dela Peña, Sta. Elena, Malanday, and Tumana"},
+
+    {"Cause":"Typhoon",
+    "name":"Fabian", 
+    "Formed":"Hulyo 16, 2021", 
+    "Dissipated":"Hulyo 29, 2021",
+    "Highest winds": "175 km/h (110 mph)",
+    "Lowest pressure" : "950 hPa (mbar); 28.05 inHg", 
+    "level":16.4, 
+    "Alarm level":2,
+    "Timeframe":"JUL 24, 2021",
+    "Source":"https://www.rappler.com/nation/marikina-river-water-level-alarm-july-24-2021/",
+    "Areas" :"Sto. Niño, Conception, Nangka, Jesus dela Peña, Sta. Elena, Malanday, and Tumana"},
+
+    {"Cause":"Typhoon",
+    "name":"Jolina", 
+    "Formed":"Hulyo 16, 2021", 
+    "Dissipated":"Hulyo 29, 2021",
+    "Highest winds": "175 km/h (110 mph)",
+    "Lowest pressure" : "950 hPa (mbar); 28.05 inHg", 
+    "level":15, 
+    "Alarm level":1,
+    "Timeframe":"September 9, 2021",
+    "Source":"https://www.philstar.com/pang-masa/police-metro/2021/09/09/2125927/ilang-lugar-sa-metro-manila-lumubog-sa-baha-dahil-kay-jolina",
+    "Areas" :"Sto. Niño, Conception, Nangka, Jesus dela Peña, Sta. Elena, Malanday, and Tumana"}
+]}
+
+
+
+
+
+

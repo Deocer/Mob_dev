@@ -1,0 +1,87 @@
+{"sites":[    
+    {"name":"Parang Elementary School", "lat":14.6572, "lot":121.1118 ,"type":"school", "cap": 2946.488, "src" : "src/imgs/pes.jpg"},
+
+    {"name":"Malanday Elementary School", "lat":14.650285, "lot":121.094425, "type":"school", "cap":2573.282, "src": "src/imgs/mes.jpg"},
+
+    {"name":"H. Baustisa Elementary School", "lat":14.657873, "lot":121.104248 , "type":"school", "cap": 1842.852, "src": "src/imgs/hbau.jpg"},  
+
+    {"name":"Concepcion Integrated School", "lat":14.650591, "lot":121.101984, "type":"school" , "cap": 1895.858, "src": "src/imgs/cis.jpg"} , 
+
+    {"name":"Concepcion Elementary School", "lat":14.648116, "lot":121.103470, "type":"school", "cap": 2571.312, "src": "src/imgs/ces.jpg"},
+
+    {"name":"Marikina Elementary School", "lat":14.631709, "lot":121.097682, "type":"school", "cap": 2250.064, "src": "src/imgs/mes.jpg" },
+
+    {"name":"Nangka Elementary School", "lat":14.672980, "lot":121.108437, "type":"school", "cap": 1905.534, "src": "src/imgs/mes.jpg"},
+
+    {"name":"Parang High School", "lat":14.663436, "lot":121.112380, "type":"school", "cap": 2533.666, "src": "src/imgs/phs.jpeg"},
+
+    {"name":"Fortune Elementary School", "lat":14.6592126, "lot":121.1241886, "type":"school", "cap": 636.636, "src": "src/imgs/fes.jpg"},
+
+    {"name":"Kapitan Moy High School", "lat":14.648531, "lot":121.119000, "type":"school", "cap":364.548,  "src": "src/imgs/kme.jpg"},
+
+    {"name":"Marikina Heights High School", "lat":14.648246, "lot":121.119295, "type":"school", "cap":393.808 , "src": "src/imgs/mhh.jpg"},
+
+    {"name":"Hermogenes Bautista Elementary School", "lat":14.657842, "lot":121.104258, "type":"school" ,"cap": 1842.852 , "src": "src/imgs/hbau.jpg"},
+
+    {"name":"Malanday National High School", "lat":14.646813, "lot":121.090434, "type":"school", "cap": 2376.27 , "src": "src/imgs/mnhs.jpg"},
+
+    {"name":"Santo Nino Elementary School", "lat":14.638950, "lot":121.096244, "type":"school", "cap" : 3052.86 , "src": "src/imgs/sns.jpg"},
+
+    {"name":"Tañong High School", "lat":14.634170, "lot":121.085359, "type":"school" , "cap" : 1133.572, "src": "src/imgs/ths.jpg"},
+
+    {"name":"Barangka Elementary School", "lat":14.633412, "lot":121.082039, "type":"school", "cap": 1419.74, "src": "src/imgs/bes.jpg"},
+
+    {"name":"San Roque Elementary School", "lat":14.623270, "lot":121.097467, "type":"school", "cap": 3638.4, "src": "src/imgs/sre.jpg"},
+
+    {"name":"Calumpang Elementary School", "lat":14.622320, "lot":121.090096, "type":"school", "cap": 3581.236, "src": "src/imgs/kes.jpg"},
+
+    {"name":"St. Nicolas School", "lat":14.661744, "lot":121.101362, "type":"school", "cap" : 563.21, "src": "src/imgs/stn.jpg"},
+
+    {"name":"Nangka Multi-Purpose Hall", "lat":14.672435, "lot":121.108416, "type":"hall", "cap": 153.068, "src": "src/imgs/ngk.jpg"},
+
+    {"name":"Fairlane Multi-Purpose Hall", "lat":14.664064, "lot":121.104591, "type":"hall", "cap" : 140.802, "src": "src/imgs/fmh.jpg"},
+
+    {"name":"JEM Subdivision Gym", "lat":14.660063, "lot":121.108319, "type":"hall", "cap" : 145.684, "src" : "src/imgs/jem.jpeg"}
+],
+
+"typhoons":[    
+    {"Cause":"Heavy Rainfall", 
+    "level":16.2, 
+    "Alarm_level":2,
+    "Timeframe":"Jan 21 2021",
+    "Source":"https://news.abs-cbn.com/video/news/01/21/21/ilang-residente-sa-marikina-city-binaha-sa-pag-apaw-ng-ilog",
+    "Areas" :"Sto. Niño, Nangka, Jesus dela Peña, Sta. Elena, Malanday, and Tumana"},
+
+    {"Cause":"Typhoon",
+    "name":"Fabian", 
+    "Formed":"Hulyo 16, 2021", 
+    "Dissipated":"Hulyo 29, 2021",
+    "winds": "175 km/h (110 mph)",
+    "pressure" : "950 hPa (mbar); 28.05 inHg", 
+    "level":16.4, 
+    "Alarm_level":2,
+    "Timeframe":"JUL 24, 2021",
+    "Source":"https://www.rappler.com/nation/marikina-river-water-level-alarm-july-24-2021/",
+    "Areas" :"Sto. Niño, Conception, Nangka, Jesus dela Peña, Sta. Elena, Malanday, and Tumana"},
+
+    {"Cause":"Typhoon",
+    "name":"Jolina", 
+    "Formed":"Hulyo 16, 2021", 
+    "Dissipated":"Hulyo 29, 2021",
+    "winds": "175 km/h (110 mph)",
+    "pressure" : "950 hPa (mbar); 28.05 inHg", 
+    "level":15, 
+    "Alarm_level":1,
+    "Timeframe":"September 9, 2021",
+    "Source":"https://www.philstar.com/pang-masa/police-metro/2021/09/09/2125927/ilang-lugar-sa-metro-manila-lumubog-sa-baha-dahil-kay-jolina",
+    "Areas" :"Sto. Niño, Conception, Nangka, Jesus dela Peña, Sta. Elena, Malanday, and Tumana"}
+]
+
+
+}
+
+
+
+
+
+

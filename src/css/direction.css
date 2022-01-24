@@ -1,0 +1,36 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto::300,400,500i,900,900i");
+
+body { 
+    font-family: "Roboto", sans-serif;
+    font-weight: bolder;
+}
+
+
+.nav{
+    width: 300px;
+    color: black;
+    text-align: left;
+}
+
+#map{
+
+}
+.direction-buttons{
+    position: absolute;
+    top: 60vh;
+}
+
+body {
+  background: #212121;
+  height: 100vh;
+}
+.hover .img {
+  overflow: hidden;
+}
+.hover img {
+  backface-visibility: hidden;
+  transition: transform 0.5s ease-in-out;
+}
+.hover:hover img {
+  transform: scale(1.05);
+}
