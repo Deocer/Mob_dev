@@ -1,0 +1,363 @@
+{
+  "fb" : [ null, {
+    "data" : "<iframe src=\"https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fwatch%2F%3Fv%3D567032957633369&width=400&show_text=true&height=300&appId\" width=\"400\" height=\"300\" style=\"border:none;overflow:hidden\" scrolling=\"no\" frameborder=\"0\" allowfullscreen=\"true\" allow=\"autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share\"></iframe>"
+  } ],
+  "sites" : [
+
+  {
+    "cap" : 2573.282,
+    "lat" : 14.6471013371964,
+    "lot" : 121.10341292358 ,
+    "name" : "Marikina High School",
+    "src" : "src/imgs/mes.jpg",
+    "type" : "school",
+    "perimeter": "MHS"
+  },
+
+  {
+    "cap" : 2250.064,
+    "lat" : 14.631709,
+    "lot" : 121.097682,
+    "name" : "Marikina Elementary School",
+    "src" : "src/imgs/mes.jpg",
+    "type" : "school",
+    "perimeter": "MES"
+  }, 
+
+   {
+    "cap" : 2946.488,
+    "lat" : 14.6573812462252,
+    "lot" : 121.111719267895,
+    "name" : "Parang Elementary School",
+    "src" : "src/imgs/pes.jpg",
+    "type" : "school",
+    "perimeter": "PES"
+  }, 
+
+ {
+    "cap" : 1842.852,
+    "lat" : 14.657873,
+    "lot" : 121.104248,
+    "name" : "H. Baustisa Elementary School",
+    "src" : "src/imgs/hbau.jpg",
+    "type" : "school",
+    "perimeter": "HBAU"
+  }, 
+
+  {
+    "cap" : 2533.666,
+    "lat" : 14.663436,
+    "lot" : 121.11238,
+    "name" : "Parang High School",
+    "src" : "src/imgs/phs.jpeg",
+    "type" : "school",
+    "perimeter": "PHS"
+  },
+
+ {
+    "cap" : 3581.236,
+    "lat" : 14.62232,
+    "lot" : 121.090096,
+    "name" : "Calumpang Elementary School",
+    "src" : "src/imgs/kes.jpg",
+    "type" : "school",
+    "perimeter": "CES"
+  },
+
+  {
+    "cap" : 3638.4,
+    "lat" : 14.62327,
+    "lot" : 121.097467,
+    "name" : "San Roque Elementary School",
+    "src" : "src/imgs/sre.jpg",
+    "type" : "school",
+    "perimeter" : "SRCS"
+  },
+
+
+  {
+    "cap" : 2573.282,
+    "lat" : 14.6597403921921,
+    "lot" : 121.12704874056,
+    "name" : "Fortune High School",
+    "src" : "src/imgs/mes.jpg",
+    "type" : "school",
+    "perimeter": "FHS"
+  }, 
+
+
+  {
+    "cap" : 1419.74,
+    "lat" : 14.633412,
+    "lot" : 121.082039,
+    "name" : "Barangka Elementary School",
+    "src" : "src/imgs/bes.jpg",
+    "type" : "school",
+    "perimeter": "BES"
+  }, 
+
+  {
+    "cap" : 1133.572,
+    "lat" : 14.63417,
+    "lot" : 121.085359,
+    "name" : "Tañong High School",
+    "src" : "src/imgs/ths.jpg",
+    "type" : "school",
+    "perimeter": "THS"
+  }, 
+
+
+  {
+    "cap" : 1905.534,
+    "lat" : 14.67298,
+    "lot" : 121.108437,
+    "name" : "Nangka Elementary School",
+    "src" : "src/imgs/mes.jpg",
+    "type" : "school",
+    "perimeter": "NES"
+  }, 
+
+ {
+    "cap" : 2376.27,
+    "lat" : 14.646813,
+    "lot" : 121.090434,
+    "name" : "Malanday National High School",
+    "src" : "src/imgs/mnhs.jpg",
+    "type" : "school",
+    "perimeter": "MNHS"
+  }, 
+
+  {
+    "cap" : 2573.282,
+    "lat" : 14.650285,
+    "lot" : 121.094425,
+    "name" : "Malanday Elementary School",
+    "src" : "src/imgs/mes.jpg",
+    "type" : "school",
+    "perimeter": "MES"
+  }, 
+
+  {
+    "cap" : 1895.858,
+    "lat" : 14.650591,
+    "lot" : 121.101984,
+    "name" : "Concepcion Integrated School",
+    "src" : "src/imgs/cis.jpg",
+    "type" : "school",
+    "perimeter": "CIS"
+  }, 
+
+
+  {
+    "cap" : 145.684,
+    "lat" : 14.660063,
+    "lot" : 121.108319,
+    "name" : "JEM Subdivision Gym",
+    "src" : "src/imgs/jem.jpeg",
+    "type" : "hall",
+    "perimeter": "JEM"
+  }, 
+
+  {
+    "cap" : 364.548,
+    "lat" : 14.648531,
+    "lot" : 121.119,
+    "name" : "Kapitan Moy High School",
+    "src" : "src/imgs/kme.jpg",
+    "type" : "school",
+    "perimeter": "KAPMOY"
+  },
+
+
+ {
+    "cap" : 393.808,
+    "lat" : 14.648246,
+    "lot" : 121.119295,
+    "name" : "Marikina Heights High School",
+    "src" : "src/imgs/mhh.jpg",
+    "type" : "school",
+    "perimeter": "MHHS"
+  },
+
+
+  {
+    "cap" : 140.802,
+    "lat" : 14.6640638998676,
+    "lot" : 121.10468365,
+    "name" : "Fairlane Multi-Purpose Hall",
+    "src" : "src/imgs/fmh.jpg",
+    "type" : "hall",
+    "perimeter": "FL"
+  },
+
+  {
+    "cap" : 140.802,
+    "lat" : 14.6489871998658,
+    "lot" : 121.0937543,
+    "name" : "Sampaguita Gym",
+    "src" : "src/imgs/fmh.jpg",
+    "type" : "hall",
+    "perimeter": "Sampaguita"
+  },
+
+  {
+    "cap" : 140.802,
+    "lat" : 14.6502242073786,
+    "lot" : 121.094825871158,
+    "name" : "Filipinas Gym",
+    "src" : "src/imgs/fmh.jpg",
+    "type" : "hall",
+    "perimeter": "Filipinas"
+  },
+
+  {
+    "cap" : 140.802,
+    "lat" : 14.6592317107071,
+    "lot" : 121.111698315099,
+    "name" : "Parang Gym",
+    "src" : "src/imgs/fmh.jpg",
+    "type" : "hall",
+    "perimeter": "ParangGym"
+  },
+
+  {
+    "cap" : 140.802,
+    "lat" : 14.6706644363527,
+    "lot" : 121.105221319345,
+    "name" : "Greenland Phase 1 Covered Court",
+    "src" : "src/imgs/fmh.jpg",
+    "type" : "hall",
+    "perimeter": "Greenland"
+  },
+
+  {
+    "cap" : 140.802,
+    "lat" : 14.6238771498629,
+    "lot" : 121.07605115,
+    "name" : "IVS Basketball Court",
+    "src" : "src/imgs/fmh.jpg",
+    "type" : "hall",
+    "perimeter": "IVS"
+  },
+
+  {
+    "cap" : 2571.312,
+    "lat" : 14.648116,
+    "lot" : 121.10347,
+    "name" : "Concepcion Elementary School",
+    "src" : "src/imgs/ces.jpg",
+    "type" : "school",
+    "perimeter": "CES"
+  }, 
+
+ {
+    "cap" : 3052.86,
+    "lat" : 14.63895,
+    "lot" : 121.096244,
+    "name" : "Santo Nino Elementary School",
+    "src" : "src/imgs/sns.jpg",
+    "type" : "school",
+    "perimeter": "SNES"
+  },
+
+ {
+    "cap" : 153.068,
+    "lat" : 14.6724765498686,
+    "lot" : 121.1084132,
+    "name" : "Nangka Multi-Purpose Hall",
+    "src" : "src/imgs/ngk.jpg",
+    "type" : "hall",
+    "perimeter": "NMPH"
+  }, 
+
+   {
+    "cap" : 636.636,
+    "lat" : 14.6592126,
+    "lot" : 121.1241886,
+    "name" : "Fortune Elementary School",
+    "src" : "src/imgs/fes.jpg",
+    "type" : "school",
+    "perimeter": "FES"
+  },  
+   {
+    "cap" : 563.21,
+    "lat" : 14.661744,
+    "lot" : 121.101362,
+    "name" : "St. Nicolas School",
+    "src" : "src/imgs/stn.jpg",
+    "type" : "school",
+    "perimeter": "Saint"
+  }
+],
+  "twit" : [ null, {
+    "data" : "<blockquote class=\"twitter-tweet\"><p lang=\"en\" dir=\"ltr\">Marikina River Water Level Update<br>Issued on December 19, 2021<br>as of 9:00 a.m.<br><br>WATER LEVEL : 12.2 meters<br><br>(Normal Level)</p>&mdash; Marikina PIO (@MarikinaPIO) <a href=\"https://twitter.com/MarikinaPIO/status/1472567032411348993?ref_src=twsrc%5Etfw\">December 19, 2021</a></blockquote>"
+  } ],
+  "typhoons" : [ {
+    "Alarm_level" : 2,
+    "Areas" : "Sto. Niño, Nangka, Jesus dela Peña, Sta. Elena, Malanday, and Tumana",
+    "Cause" : "Heavy Rainfall",
+    "Source" : "https://news.abs-cbn.com/video/news/01/21/21/ilang-residente-sa-marikina-city-binaha-sa-pag-apaw-ng-ilog",
+    "Timeframe" : "Jan 21 2021",
+    "level" : 16.2
+  }, {
+    "Alarm_level" : 2,
+    "Areas" : "Sto. Niño, Conception, Nangka, Jesus dela Peña, Sta. Elena, Malanday, and Tumana",
+    "Cause" : "Typhoon",
+    "Dissipated" : "Hulyo 29, 2021",
+    "Formed" : "Hulyo 16, 2021",
+    "Source" : "https://www.rappler.com/nation/marikina-river-water-level-alarm-july-24-2021/",
+    "Timeframe" : "JUL 24, 2021",
+    "level" : 16.4,
+    "name" : "Fabian",
+    "pressure" : "950 hPa (mbar); 28.05 inHg",
+    "winds" : "175 km/h (110 mph)"
+  }, {
+    "Alarm_level" : 1,
+    "Areas" : "Sto. Niño, Conception, Nangka, Jesus dela Peña, Sta. Elena, Malanday, and Tumana",
+    "Cause" : "Typhoon",
+    "Dissipated" : "Hulyo 29, 2021",
+    "Formed" : "Hulyo 16, 2021",
+    "Source" : "https://www.philstar.com/pang-masa/police-metro/2021/09/09/2125927/ilang-lugar-sa-metro-manila-lumubog-sa-baha-dahil-kay-jolina",
+    "Timeframe" : "September 9, 2021",
+    "level" : 15,
+    "name" : "Jolina",
+    "pressure" : "950 hPa (mbar); 28.05 inHg",
+    "winds" : "175 km/h (110 mph)"
+  }, {
+    "Alarm_level" : 3,
+    "Areas" : "Nangka, Malanday, and Tumana",
+    "Cause" : "Typhoon",
+    "Dissipated" : "Nobyembre 15, 2020",
+    "Formed" : "Nobyembre 8, 2020",
+    "Source" : "https://www.philstar.com/pang-masa/police-metro/2021/09/09/2125927/ilang-lugar-sa-metro-manila-lumubog-sa-baha-dahil-kay-jolina",
+    "Timeframe" : "November 12, 2020",
+    "level" : 21.8,
+    "name" : "Ulysses",
+    "pressure" : "950 hPa (mbar); 28.05 inHg",
+    "winds" : "150 km/h (215 mph)"
+  }, {
+    "Alarm_level" : 3,
+    "Areas" : "Sto. Niño, Conception, Nangka, Jesus dela Peña, Sta. Elena, Malanday, and Tumana",
+    "Cause" : "Typhoon",
+    "Dissipated" : "Agosto 16, 2018",
+    "Formed" : "Agosto 6, 2018",
+    "Source" : "https://newsinfo.inquirer.net/1020375/look-flooding-aftermath-in-marikina",
+    "Timeframe" : "Agosto 12, 2018",
+    "level" : 20,
+    "name" : "Karding",
+    "pressure" : "990 hPa (mbar); 29.23 inHg",
+    "winds" : "75 km/h (100 mph)"
+  }, {
+    "Alarm_level" : 2,
+    "Areas" : "Sto. Niño, Conception, Nangka, Jesus dela Peña, Sta. Elena, Malanday, and Tumana",
+    "Cause" : "Typhoon",
+    "Dissipated" : "Septyembre 17, 2018",
+    "Formed" : "Septyembre 6, 2018",
+    "Source" : "https://www.rappler.com/nation/212056-marikina-river-water-level-typhoon-ompong-september-2018/",
+    "Timeframe" : "Septyembre 15, 2018",
+    "level" : 17.1,
+    "name" : "Ompong",
+    "pressure" : "905 hPa (mbar); 26.72 inHg",
+    "winds" : "205 km/h (285 mph)"
+  } ]
+}

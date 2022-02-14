@@ -1,4 +1,7 @@
-{"sites":[    
+{"sites":[
+
+    {"name":"Parang Elementary School", "lat":14.6572, "lot":121.1118 ,"type":"school", "cap": 2946.488, "src" : "src/imgs/pes.jpg"},
+
     {"name":"Parang Elementary School", "lat":14.6572, "lot":121.1118 ,"type":"school", "cap": 2946.488, "src" : "src/imgs/pes.jpg"},
 
     {"name":"Malanday Elementary School", "lat":14.650285, "lot":121.094425, "type":"school", "cap":2573.282, "src": "src/imgs/mes.jpg"},
@@ -74,6 +77,42 @@
     "Alarm_level":1,
     "Timeframe":"September 9, 2021",
     "Source":"https://www.philstar.com/pang-masa/police-metro/2021/09/09/2125927/ilang-lugar-sa-metro-manila-lumubog-sa-baha-dahil-kay-jolina",
+    "Areas" :"Sto. Niño, Conception, Nangka, Jesus dela Peña, Sta. Elena, Malanday, and Tumana"},
+
+    {"Cause":"Typhoon",
+    "name":"Ulysses", 
+    "Formed":"Nobyembre 8, 2020", 
+    "Dissipated":"Nobyembre 15, 2020",
+    "winds": "150 km/h (215 mph)",
+    "pressure" : "950 hPa (mbar); 28.05 inHg", 
+    "level":21.8, 
+    "Alarm_level":3,
+    "Timeframe":"November 12, 2020",
+    "Source":"https://www.philstar.com/pang-masa/police-metro/2021/09/09/2125927/ilang-lugar-sa-metro-manila-lumubog-sa-baha-dahil-kay-jolina",
+    "Areas" :"Nangka, Malanday, and Tumana"},
+
+    {"Cause":"Typhoon",
+    "name":"Karding", 
+    "Formed":"Agosto 6, 2018", 
+    "Dissipated":"Agosto 16, 2018",
+    "winds": "75 km/h (100 mph)",
+    "pressure" : "990 hPa (mbar); 29.23 inHg", 
+    "level":20, 
+    "Alarm_level":3,
+    "Timeframe":"Agosto 12, 2018",
+    "Source":"https://newsinfo.inquirer.net/1020375/look-flooding-aftermath-in-marikina",
+    "Areas" :"Sto. Niño, Conception, Nangka, Jesus dela Peña, Sta. Elena, Malanday, and Tumana"},
+
+    {"Cause":"Typhoon",
+    "name":"Ompong", 
+    "Formed":"Septyembre 6, 2018", 
+    "Dissipated":"Septyembre 17, 2018",
+    "winds": "205 km/h (285 mph)",
+    "pressure" : "905 hPa (mbar); 26.72 inHg", 
+    "level":17.1, 
+    "Alarm_level":2,
+    "Timeframe":"Septyembre 15, 2018",
+    "Source":"https://www.rappler.com/nation/212056-marikina-river-water-level-typhoon-ompong-september-2018/",
     "Areas" :"Sto. Niño, Conception, Nangka, Jesus dela Peña, Sta. Elena, Malanday, and Tumana"}
 ]
 
