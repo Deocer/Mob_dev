@@ -337,7 +337,7 @@ $.ajax({
 
 <script type="text/javascript">
   
-setInterval(myTimer, 100000000);
+setInterval(myTimer, 100000);
 
 //Main map function
 getAJAXData().done(function(res){
@@ -367,7 +367,7 @@ getAJAXData().done(function(res){
     //Refresh the map to properly load
     setTimeout(function(){ map.invalidateSize()}, 10000);
 
-
+    setInterval(function(){ map.invalidateSize()}, 1000);
 
 
 
@@ -420,7 +420,22 @@ getAJAXData().done(function(res){
 
 
     //User's home marker
-    L.marker([lt,ln]).addTo(map).bindPopup('Home');
+    //L.marker([lt,ln]).addTo(map).bindPopup('Home');
+    markers = new L.LayerGroup().addTo(map);
+
+    setInterval(function(){
+
+     navigator.geolocation.getCurrentPosition(
+        function(position) {
+            sessionStorage.setItem("ulat", lt);
+            sessionStorage.setItem("ulot", ln);
+            markers.clearLayers();
+            var marker = L.marker([lt,ln]).addTo(markers).bindPopup('Home'); 
+      });
+    }, 10000);
+
+    
+
     var bound = L.geoJSON(geojsonFeaturde);
     var myLayer = L.geoJSON();
     myLayer.addData(MHS);
