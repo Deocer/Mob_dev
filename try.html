@@ -39,14 +39,11 @@
             </div>
           </div>
         </div>
-<div id="map" class="ignore-css" style="width: 100%; height: 550px; overflow: hidden;z-index: 1;" padding-top:50px;></div> 
+        <div id="mapper">
+          <div id="map" class="ignore-css" style="width: 100%; height: 550px; overflow: hidden;z-index: 1;" padding-top:50px;></div> 
+        </div>
+
 <br>
-
-
-
-
-
-
 </body>
 <script type='text/javascript'>
 window.onload = function() {
@@ -64,76 +61,68 @@ window.onload = function() {
     document.getElementById("on").textContent = Lot;
     document.getElementById("cap").textContent = cap;
     document.getElementById("pimg").src = src;
- 
-    L.mapquest.key = 'UBI3Wc0udk0csdys2DFuAJAdhxdX00E9';
-      var directions = L.mapquest.directions();
-        directions.route({
-            locations: [uLat+","+uLot, Lat+","+Lot]
+
+
+        L.mapquest.key = 'UBI3Wc0udk0csdys2DFuAJAdhxdX00E9';
+
+        
+
+        function getloc(){
+          navigator.geolocation.getCurrentPosition(
+            function(position) {
+              sessionStorage.setItem("ulat", position.coords.latitude);
+              sessionStorage.setItem("ulot", position.coords.longitude); 
+              addDirections(position.coords.latitude,position.coords.longitude);    
+            },
+            function() {
+              getloc(); 
+          });
+        }
+
+
+        setInterval(getloc, 1000);
+
+
+        function addDirections(llt,lln) {
+          var directions = L.mapquest.directions();
+          directions.route({
+            locations: [llt+","+lln, Lat+","+Lot],
           }, createMap);
- 
-  function createMap(error, response) {
-    var map = L.mapquest.map('map', {
-      center: [0, 0],
-      layers: L.mapquest.tileLayer('map'),
-      zoom: 0
-    });
-    var DirectionsLayerWithCustomMarkers = L.mapquest.DirectionsLayer.extend({
-      createStartMarker: function(location, stopNumber) {
-        console.log(location);
-        console.log(stopNumber);
-        return L.mapquest.textMarker(location.latLng, {
-          text: 'Current Location',
-          type: 'marker',
-          icon: {
-              primaryColor: '#027521',
-              secondaryColor: '#027321',
-            size: 'sm',
-            symbol: stopNumber
-          }
-        });
-      },
-      createWaypointMarker: function(location, stopNumber) {
-        console.log(location);
-        console.log(stopNumber);
-        return L.mapquest.textMarker(location.latLng, {
-          text: stopNumber,
-          type: 'marker',
-          icon: {
-          primaryColor: '#0275d8',
-          secondaryColor: '#0275d8',
-            size: 'sm',
-            symbol: stopNumber
-          }
-        });
-      },
-      createEndMarker: function(location, stopNumber) {
-        console.log(location);
-        console.log(stopNumber);
-        return L.mapquest.textMarker(location.latLng, {
-          text: name,
-          type: 'marker',
-          icon: {
-          primaryColor: '#0275d8',
-          secondaryColor: '#0275d8',
-            size: 'sm',
-            symbol: stopNumber
-          }
-        });
-      }
-    });
-    directionsLayer = new DirectionsLayerWithCustomMarkers({
-      directionsResponse: response
-    }).addTo(map);
-    var narrativeControl = L.mapquest.narrativeControl({
-      directionsResponse: response,
-      compactResults: true,
-      interactive: true,
-      position: 'bottomright',
-      className: 'nav d-none'
-    });
-    narrativeControl.setDirectionsLayer(directionsLayer);
-    narrativeControl.addTo(map);
-  }
+        }
+
+        function createMap(err, response) {
+          $("#mapper").empty();
+          $( "<div id=\"map\" style=\"height: 500px;\"></div>" ).appendTo("#mapper");
+          var map = L.mapquest.map('map', {
+            center: [0, 0],
+            layers: L.mapquest.tileLayer('map'),
+            zoom: 7
+          });
+
+          map.remove();
+
+          map = L.mapquest.map('map', {
+            center: [0, 0],
+            layers: L.mapquest.tileLayer('map'),
+            zoom: 7
+          });
+
+          var directionsLayer = L.mapquest.directionsLayer({
+            directionsResponse: response
+          }).addTo(map);
+
+          var narrativeControl = L.mapquest.narrativeControl({
+            directionsResponse: response,
+            compactResults: false,
+            interactive: true,
+            position: 'bottomright',
+            className: 'nav d-none'
+          });
+
+          narrativeControl.setDirectionsLayer(directionsLayer);
+          narrativeControl.addTo(map);
+        }
+
 }
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>

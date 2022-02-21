@@ -77,13 +77,13 @@ body {
 
 </style>
 
-<body style="width: 100vw; overflow-x: hidden;">
+<body style="width: 100vw; overflow-x: hidden;z-index: 0;">
   <div id="fb-root"></div>
   <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v12.0" nonce="hdJdVgSL"></script>
   <div id="weathercont" style=" 
-         padding: 5px; 
+         padding: 0; 
          background-color: #045de9;
-         background-image: url('src/imgs/day.jpg');
+         background-image: url('https://miro.medium.com/max/712/1*E_Nsfbb3aGP7IIluzLwl8Q.gif');
          background-position: center; /* Center the image */
          background-repeat: no-repeat; /* Do not repeat the image */
          background-size: cover; /
@@ -104,39 +104,37 @@ body {
       </div>
     </div>
   </div>
-  <div class="container-fluid text-center">
-    <ul class="nav nav-tabs" id="myTab" role="tablist">
-      <li class="nav-item" role="presentation">
-        <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true" style="width:30vw">
-          <h2 class="maincont">Updates</h2> </button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false" style="width:30vw">
-          <h2 class="maincont">Evacuation Site</h2> </button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false" style="width:30vw">
-          <h2 class="maincont">Flood History</h2> </button>
-      </li>
-    </ul>
+
+  <div class="row container-fluid m-1 rounded-pill bg-primary text-light" id="weathercont2">
+    <div class="col">
+      <img src="" class="card-img" id="secweathericon" alt="..." style="width:50px; height: 50px; margin:auto;">
+    </div>
+    <div class="col">
+      <h1 id="temp" style="font-size:40px;"></h1>
+    </div>
+    <div class="col">
+      <h1 style="font-size:40px;">13M</h1>
+    </div>
   </div>
+
+
   <div class="tab-content" id="myTabContent" class="maincont">
     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab" style="background-color:whitesmoke;">
       <ul class="nav nav-tabs" id="myTab2" role="tablist" style="width:100vw;">
         <li class="nav-item" role="presentation">
-          <button style="width:50vw;" class="nav-link active" id="home-tab2" data-bs-toggle="tab" data-bs-target="#home2" type="button" role="tab" aria-controls="home" aria-selected="true">Twitter Updates</button>
+          <button style="width:50vw;" class="nav-link active maincont" id="home-tab2" data-bs-toggle="tab" data-bs-target="#home2" type="button" role="tab" aria-controls="home" aria-selected="true">Twitter Updates</button>
         </li>
         <li class="nav-item" role="presentation">
-          <button style="width:50vw;" class="nav-link" id="profile-tab2" data-bs-toggle="tab" data-bs-target="#profile2" type="button" role="tab" aria-controls="profile" aria-selected="false">Facebook Feed</button>
+          <button style="width:50vw;" class="nav-link maincont" id="profile-tab2" data-bs-toggle="tab" data-bs-target="#profile2" type="button" role="tab" aria-controls="profile" aria-selected="false">Facebook Feed</button>
         </li>
       </ul>
       <div class="tab-content">
-        <div class="tab-pane active" id="home2" role="tabpanel" aria-labelledby="home-tab">
+        <div class="tab-pane active" id="home2" role="tabpanel" aria-labelledby="home-tab"style ="overflow-x: hidden ">
           <a class="twitter-timeline" href="https://twitter.com/MarikinaPIO" style="height:100vh; overflow-y: scroll;"></a>
         </div>
         <div class="tab-pane" id="profile2" role="tabpanel" aria-labelledby="profile-tab">
-          <div class="bg-light" style="margin:auto; text-align: center;">
-            <iframe src="http://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com/100064694886215&width=350&colorscheme=light&show_faces=true&border_color&stream=true&header=true&height=900" scrolling="yes" style="border:none; overflow:hidden; width:100vw; height:900px; background:whitesmoke; " allowtransparency="true" frameborder="0"></iframe>
+          <div class="bg-light" style="margin:auto; text-align: center; width:100vw; overflow-x: hidden ">
+            <iframe src="http://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com/100064694886215&width=330&colorscheme=light&show_faces=true&border_color&stream=true&header=false&height=900" scrolling="yes" style="border:none; overflow:hidden; width:330px; height:900px; background:whitesmoke; " allowtransparency="true" frameborder="0"></iframe>
           </div>
         </div>
       </div>
@@ -146,31 +144,31 @@ body {
       firstTab.show()
       </script>
     </div>
-    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab" style="background-color:whitesmoke;">
+    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab" style="background-color:whitesmoke; margin: auto; text-align: center;">
       <br>
-      <div class="row g-0">
+      <div class="row g-0 border border-primary rounded" style="width:80%; margin:auto; text-align: center;">
         <div class="col-md-4">
           <a class="hover">
-            <div class="img"> <img src="https://danurobotics.files.wordpress.com/2021/01/qi-bin-w4hbafegiac-unsplash.jpg" id="pimg" class="img-fluid rounded-start" alt="..." style="height:20vh; width:100%;"> </div>
+            <div class="img"> <img src="https://i.pinimg.com/originals/9c/38/fd/9c38fdff1e4c200cb34af24cb918d360.gif" id="pimg" class="img-fluid rounded-start" alt="..." style="height:20vh; width:100%;"> </div>
           </a>
         </div>
         <div class="col-md-8">
           <div class="card-body" style="width: 100%; text-align: left; font-weight: 900;">
-            <p class="text-muted" id="evt" style="font-weight: 900i;">SELECT AN EVACUATION SITE:</p>
-            <h5 class="text-muted" id="loctab"></h5>
+            <p class="maincont" id="evt" style="font-weight: 900i; font-size:25px;">SELECT AN EVACUATION SITE:</p>
+            <h3 class="" id="loctab"></h3>
             <div class="row">
               <div class="col">
-                <p class="card-text text-muted"><i class="fas fa-map-marker-alt text-muted" style="font-size:20px;"></i> <span id="at"></span> <span id="on"></span> .</p>
+                <p class="card-text"><i class="fas fa-map-marker-alt maincont" style="font-size:20px;"></i> <span id="at"></span> <span id="on"></span> .</p>
               </div>
               <div class="col">
-                <p class="card-text"><small class="text-muted" style="font-size:20px;"> <span>Capacity:</span> <span id="cap"></span> </small></p>
+                <p class="card-text"><small class="" style="font-size:20px;"> <span class="maincont">Capacity:</span> <span id="cap"></span> </small></p>
               </div>
             </div>
           </div>
         </div>
       </div>
       <br>
-      <div id="map" style="width: 100vw;"></div>
+      <div id="map" style="width: 100vw; z-index: 1;"></div>
       <br> </div>
     <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
       <br>
@@ -181,6 +179,26 @@ body {
       <div id="typhoon" style="background-color:whitesmoke;"> </div>
     </div>
   </div>
+
+
+  <div class="container-fluid text-center" style="position: fixed; bottom: 0; z-index: 2; background-color: whitesmoke;">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true" style="width:30vw">
+          <h2 class=""><i class="fas fa-home maincont" style="font-size:20px;"></i> </h2> </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false" style="width:30vw">
+          <h2 class=""><i class="fas fa-map maincont" style="font-size:20px;"></i></h2> </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false" style="width:30vw">
+          <h2 class=""><i class="fas fa-water maincont" style="font-size:20px;"></i></h2> </button>
+      </li>
+    </ul>
+  </div>
+
+
 </body>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
@@ -200,10 +218,12 @@ function myTimer() {
       var tojson = JSON.stringify(result);
       var weather = JSON.parse(tojson);
       document.getElementById("weathericon").src = "https:" + weather.current.condition.icon;
+      document.getElementById("secweathericon").src = "https:" + weather.current.condition.icon;
       n = new Date();
       y = n.getFullYear();
       m = n.getMonth() + 1;
       d = n.getDate();
+      document.getElementById("temp").textContent = weather.current.feelslike_c + "°C";
       document.getElementById("date").innerHTML = m + "/" + d + "/" + y;
       document.getElementById("weather").textContent = weather.current.condition.text;
       document.getElementById("wind").textContent = weather.current.wind_kph + "km/h";
@@ -285,22 +305,6 @@ function click(id) {
 var lt = sessionStorage.getItem('ulat');
 var ln = sessionStorage.getItem('ulot');
 
-//Changes app background base on the time of day
-var hr = (new Date()).getHours();
-  console.log(hr);
-  if(hr < 18 && hr > 12) {
-    document.getElementById('weathercont').style.backgroundImage = "url(src/imgs/noon.jpg)";
-    document.getElementsByClassName("maincont")[0].style.color = "#96120e";
-    document.getElementsByClassName("maincont")[1].style.color = "#96120e";
-    document.getElementsByClassName("maincont")[2].style.color = "#96120e";
-  } else if(hr > 18) {
-    document.getElementById('weathercont').style.backgroundImage = "url(src/imgs/night.jpg)";
-    document.getElementsByClassName("maincont")[0].style.color = "violet";
-    document.getElementsByClassName("maincont")[1].style.color = "violet";
-    document.getElementsByClassName("maincont")[2].style.color = "violet";
-  } else if(hr < 12) {
-    document.getElementById('weathercont').style.backgroundImage = "url(src/imgs/day.jpg)";
-  }
 
 //Fires a weather alert
 $.ajax({
@@ -311,10 +315,12 @@ $.ajax({
     var weather = JSON.parse(tojson);
     console.log(weather);
     document.getElementById("weathericon").src = "https:" + weather.current.condition.icon;
+    document.getElementById("secweathericon").src = "https:" + weather.current.condition.icon;
     n = new Date();
     y = n.getFullYear();
     m = n.getMonth() + 1;
     d = n.getDate();
+    document.getElementById("temp").textContent = weather.current.feelslike_c + "°C";
     document.getElementById("date").innerHTML = m + "/" + d + "/" + y;
     document.getElementById("weather").textContent = weather.current.condition.text;
     document.getElementById("wind").textContent = weather.current.wind_kph + "km/h";
@@ -397,7 +403,7 @@ getAJAXData().done(function(res){
     //Loop through data from firebase to make markers on map
     for(let i = 0; i < lmt; i++) {
       if(jsob.sites[i].type === "school") {
-        var popup = L.popup().setContent("<div id='" + jsob.sites[i].name + "' ontouchstart='fill_card(" + jsob.sites[i].lat + "," + jsob.sites[i].lot + "," + "`" + jsob.sites[i].name + "`" + "," + "`" + jsob.sites[i].src + "`" + "," + "`" + jsob.sites[i].cap + "`" + ")'>" + '<p>' + jsob.sites[i].name + '' + "</p>" + "<button class='btn btn-primary' id='" + jsob.sites[i].name + "' onclick='redirect(" + jsob.sites[i].lat + "," + jsob.sites[i].lot + "," + "`" + jsob.sites[i].name + "`" + "," + "`" + jsob.sites[i].src + "`" + "," + "`" + jsob.sites[i].cap + "`" + ")'>Select Evacuation Site</button>" + "</div>");
+        var popup = L.popup().setContent("<div class='maincont'  id='" + jsob.sites[i].name + "' ontouchstart='fill_card(" + jsob.sites[i].lat + "," + jsob.sites[i].lot + "," + "`" + jsob.sites[i].name + "`" + "," + "`" + jsob.sites[i].src + "`" + "," + "`" + jsob.sites[i].cap + "`" + ")'>" + '<p>' + jsob.sites[i].name + '' + "</p>" + "<button class='btn btn-primary' id='" + jsob.sites[i].name + "' onclick='redirect(" + jsob.sites[i].lat + "," + jsob.sites[i].lot + "," + "`" + jsob.sites[i].name + "`" + "," + "`" + jsob.sites[i].src + "`" + "," + "`" + jsob.sites[i].cap + "`" + ")'>Select Evacuation Site</button>" + "</div>");
         var m = L.marker([jsob.sites[i].lat, jsob.sites[i].lot], {iconSize: [30, 42]
         }).on('click', function(e) { 
           fill_card(jsob.sites[i].lat, jsob.sites[i].lot, jsob.sites[i].name, jsob.sites[i].src, jsob.sites[i].cap)
@@ -407,7 +413,7 @@ getAJAXData().done(function(res){
 
 
       } else if(jsob.sites[i].type === "hall") {
-        var popup = L.popup().setContent("<div id='" + jsob.sites[i].name + "' onclick='fill_card(" + jsob.sites[i].lat + "," + jsob.sites[i].lot + "," + "`" + jsob.sites[i].name + "`" + "," + "`" + jsob.sites[i].src + "`" + "," + "`" + jsob.sites[i].cap + "`" + ")'>" + '<p>' + jsob.sites[i].name + '' + "</p>" + "<button class='btn btn-primary'id='" + jsob.sites[i].name + "' onclick='redirect(" + jsob.sites[i].lat + "," + jsob.sites[i].lot + "," + "`" + jsob.sites[i].name + "`" + "," + "`" + jsob.sites[i].src + "`" + "," + "`" + jsob.sites[i].cap + "`" + ")'>Select Evacuation Site</button>" + "</div>");
+        var popup = L.popup().setContent("<div class='maincont' id='" + jsob.sites[i].name + "' onclick='fill_card(" + jsob.sites[i].lat + "," + jsob.sites[i].lot + "," + "`" + jsob.sites[i].name + "`" + "," + "`" + jsob.sites[i].src + "`" + "," + "`" + jsob.sites[i].cap + "`" + ")'>" + '<p>' + jsob.sites[i].name + '' + "</p>" + "<button class='btn  btn-primary' id='" + jsob.sites[i].name + "' onclick='redirect(" + jsob.sites[i].lat + "," + jsob.sites[i].lot + "," + "`" + jsob.sites[i].name + "`" + "," + "`" + jsob.sites[i].src + "`" + "," + "`" + jsob.sites[i].cap + "`" + ")'>Select Evacuation Site</button>" + "</div>");
         var m = L.marker([jsob.sites[i].lat, jsob.sites[i].lot], {iconSize: [30, 42]
         }).on('click', function(e) {
           fill_card(jsob.sites[i].lat, jsob.sites[i].lot, jsob.sites[i].name, jsob.sites[i].src, jsob.sites[i].cap)
@@ -440,14 +446,18 @@ getAJAXData().done(function(res){
     var myLayer = L.geoJSON();
     myLayer.addData(MHS);
     myLayer.addData(PHS);
-    myLayer.addData(MES);    
+    myLayer.addData(MES);
+    myLayer.addData(HBAU);
+    myLayer.addData(CLES);
+    myLayer.addData(SRCS);    
     var smarkers = L.layerGroup(schools);
     var hmarkers = L.layerGroup(halls);
     var amarkers = L.layerGroup(all);
 
     var layerGroup = new L.LayerGroup();
-    layerGroup.addLayer(myLayer);
     layerGroup.addLayer(amarkers);
+    layerGroup.addLayer(myLayer);
+    
 
     var overlayMaps = {
       "All": amarkers,
@@ -542,16 +552,27 @@ getAJAXData().done(function(res){
       chart.draw(view, options);
     }
 
-
-
-
-
 });
 
+</script>
+<script type="text/javascript">
+ $(document).ready(function(){
+   $("#weathercont2").hide();
 
+   $("#home-tab").click(function(){
+         $("#weathercont").show();
+         $("#weathercont2").hide();
+    });
+   $("#profile-tab").click(function(){
+         $("#weathercont").hide();
+         $("#weathercont2").show();
+    });
+   $("#contact-tab").click(function(){
+         $("#weathercont").hide();
+         $("#weathercont2").show();
+    });
 
-
-
+})  
 
 </script>
 </html>
