@@ -74,10 +74,18 @@ body {
   }
 }
 
+.leaflet-control-layers-expanded{
+  color: black;
+}
+
+.leaflet-right{
+  top: 100;
+} 
+
 
 </style>
 
-<body style="width: 100vw; overflow-x: hidden;z-index: 0;">
+<body style="max-width: 97vw; overflow-x: hidden;z-index: 0; min-height: 100vh; margin:0; padding:0; background-color: whitesmoke;">
   <div id="fb-root"></div>
   <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v12.0" nonce="hdJdVgSL"></script>
   <div id="weathercont" style=" 
@@ -105,7 +113,7 @@ body {
     </div>
   </div>
 
-  <div class="row container-fluid m-1 rounded-pill bg-primary text-light" id="weathercont2">
+  <div class="row container-fluid m-1 rounded-pill bg-light text-dark shadow-lg" id="weathercont2">
     <div class="col">
       <img src="" class="card-img" id="secweathericon" alt="..." style="width:50px; height: 50px; margin:auto;">
     </div>
@@ -144,18 +152,19 @@ body {
       firstTab.show()
       </script>
     </div>
-    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab" style="background-color:whitesmoke; margin: auto; text-align: center;">
+    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab" style="background-color:whitesmoke; margin: auto;">
       <br>
-      <div class="row g-0 border border-primary rounded" style="width:80%; margin:auto; text-align: center;">
+      <div class="row g-0 border rounded shadow-md" style="width:80%; margin:auto; text-align: center;">
         <div class="col-md-4">
           <a class="hover">
             <div class="img"> <img src="https://i.pinimg.com/originals/9c/38/fd/9c38fdff1e4c200cb34af24cb918d360.gif" id="pimg" class="img-fluid rounded-start" alt="..." style="height:20vh; width:100%;"> </div>
           </a>
         </div>
         <div class="col-md-8">
-          <div class="card-body" style="width: 100%; text-align: left; font-weight: 900;">
+          <div class="card-body" style="width: 100%; text-align: left; font-weight: 900; background-color: white;">
             <p class="maincont" id="evt" style="font-weight: 900i; font-size:25px;">SELECT AN EVACUATION SITE:</p>
             <h3 class="" id="loctab"></h3>
+            <!-- 
             <div class="row">
               <div class="col">
                 <p class="card-text"><i class="fas fa-map-marker-alt maincont" style="font-size:20px;"></i> <span id="at"></span> <span id="on"></span> .</p>
@@ -164,12 +173,32 @@ body {
                 <p class="card-text"><small class="" style="font-size:20px;"> <span class="maincont">Capacity:</span> <span id="cap"></span> </small></p>
               </div>
             </div>
+             -->
+
+            <button class="btn btn-primary w-100" id="card-direction">SHOW DIRECTIONS</button>
           </div>
         </div>
       </div>
       <br>
+      <br>
+      <div class="row g-0 border rounded-pill shadow-lg py-1" style="width:100%; margin:auto; text-align: center;background-color: white;">
+        <div class="col">
+            <img src="src/imgs/icon-evac.png" style="height:30px; width: 20px;" >
+            <h2>Schools</h2>
+        </div>
+        <div class="col">
+            <img src="src/imgs/icon-evac2.png" style="height:30px; width: 20px;">
+            <h2>Covered Gyms</h2>     
+        </div>
+        <div class="col">
+            <img src="src/imgs/evac-icon3.png" style="height:30px; width: 20px;">
+            <h2>Home</h2>
+        </div>
+      </div>
+      <br>
       <div id="map" style="width: 100vw; z-index: 1;"></div>
-      <br> </div>
+      <br> 
+    </div>
     <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
       <br>
       <div style="margin:auto; text-align:center;" style="background-color:whitesmoke;">
@@ -267,30 +296,30 @@ function redirect(lat, lot, evac, src, cap) {
   sessionStorage.setItem("src", src);
   sessionStorage.setItem("Evac", evac);
   sessionStorage.setItem("Cap", cap);
-  window.location.href = 'try.html';
+  //window.location.href = 'try.html';
 }
 
 //Fills the preview card when a evac area is tapped
 function fill_card(lat, lot, evac, src, cap) {
   document.getElementById("loctab").innerHTML = "";
-  document.getElementById("at").textContent = "";
-  document.getElementById("on").textContent = "";
-  document.getElementById("cap").textContent = "";
+  //document.getElementById("at").textContent = "";
+  //document.getElementById("on").textContent = "";
+  //document.getElementById("cap").textContent = "";
   document.getElementById("pimg").src = "";
   document.getElementById("evt").innerHTML = "EVACUATION SITE";
   document.getElementById("loctab").innerHTML = evac;
-  document.getElementById("at").textContent = lat;
-  document.getElementById("on").textContent = lot;
-  document.getElementById("cap").textContent = cap;
+  //document.getElementById("at").textContent = lat;
+  //document.getElementById("on").textContent = lot;
+  //document.getElementById("cap").textContent = cap;
   document.getElementById("pimg").src = src;
-  //drawradious(evac);
+  const el = document.getElementById("card-direction");
+  el.addEventListener("click", redirect(lat, lot, evac, src, cap));
 }
 
 //Helps fill card dont remove func
 function click(id) {
   $('#' + id).trigger('click');
 }
-
 
 </script>
 
@@ -389,8 +418,32 @@ getAJAXData().done(function(res){
 
 
 
+    var schoolIcon = L.icon({
+        iconUrl: 'src/imgs/icon-evac.png',
 
+        iconSize:     [25, 40], // size of the icon
+        shadowSize:   [0, 0], // size of the shadow
+        iconAnchor:   [25, 40], // point of the icon which will correspond to marker's location
+        popupAnchor:  [-15, -30] // point from which the popup should open relative to the iconAnchor
+    });
 
+    var homeIcon = L.icon({
+        iconUrl: 'src/imgs/evac-icon3.png',
+
+        iconSize:     [25, 40], // size of the icon
+        shadowSize:   [0, 0], // size of the shadow
+        iconAnchor:   [25, 40], // point of the icon which will correspond to marker's location
+        popupAnchor:  [-15, -30] // point from which the popup should open relative to the iconAnchor
+    });
+
+    var courtIcon = L.icon({
+        iconUrl: 'src/imgs/icon-evac2.png',
+
+        iconSize:     [25, 40], // size of the icon
+        shadowSize:   [0, 0], // size of the shadow
+        iconAnchor:   [25, 40], // point of the icon which will correspond to marker's location
+        popupAnchor:  [-15, -30] // point from which the popup should open relative to the iconAnchor
+    });
 
 
     //Arrays to hold marker data  
@@ -404,7 +457,7 @@ getAJAXData().done(function(res){
     for(let i = 0; i < lmt; i++) {
       if(jsob.sites[i].type === "school") {
         var popup = L.popup().setContent("<div class='maincont'  id='" + jsob.sites[i].name + "' ontouchstart='fill_card(" + jsob.sites[i].lat + "," + jsob.sites[i].lot + "," + "`" + jsob.sites[i].name + "`" + "," + "`" + jsob.sites[i].src + "`" + "," + "`" + jsob.sites[i].cap + "`" + ")'>" + '<p>' + jsob.sites[i].name + '' + "</p>" + "<button class='btn btn-primary' id='" + jsob.sites[i].name + "' onclick='redirect(" + jsob.sites[i].lat + "," + jsob.sites[i].lot + "," + "`" + jsob.sites[i].name + "`" + "," + "`" + jsob.sites[i].src + "`" + "," + "`" + jsob.sites[i].cap + "`" + ")'>Select Evacuation Site</button>" + "</div>");
-        var m = L.marker([jsob.sites[i].lat, jsob.sites[i].lot], {iconSize: [30, 42]
+        var m = L.marker([jsob.sites[i].lat, jsob.sites[i].lot], {icon: schoolIcon
         }).on('click', function(e) { 
           fill_card(jsob.sites[i].lat, jsob.sites[i].lot, jsob.sites[i].name, jsob.sites[i].src, jsob.sites[i].cap)
         }).addTo(map).bindPopup(popup);
@@ -414,7 +467,7 @@ getAJAXData().done(function(res){
 
       } else if(jsob.sites[i].type === "hall") {
         var popup = L.popup().setContent("<div class='maincont' id='" + jsob.sites[i].name + "' onclick='fill_card(" + jsob.sites[i].lat + "," + jsob.sites[i].lot + "," + "`" + jsob.sites[i].name + "`" + "," + "`" + jsob.sites[i].src + "`" + "," + "`" + jsob.sites[i].cap + "`" + ")'>" + '<p>' + jsob.sites[i].name + '' + "</p>" + "<button class='btn  btn-primary' id='" + jsob.sites[i].name + "' onclick='redirect(" + jsob.sites[i].lat + "," + jsob.sites[i].lot + "," + "`" + jsob.sites[i].name + "`" + "," + "`" + jsob.sites[i].src + "`" + "," + "`" + jsob.sites[i].cap + "`" + ")'>Select Evacuation Site</button>" + "</div>");
-        var m = L.marker([jsob.sites[i].lat, jsob.sites[i].lot], {iconSize: [30, 42]
+        var m = L.marker([jsob.sites[i].lat, jsob.sites[i].lot], {icon: courtIcon
         }).on('click', function(e) {
           fill_card(jsob.sites[i].lat, jsob.sites[i].lot, jsob.sites[i].name, jsob.sites[i].src, jsob.sites[i].cap)
         }).addTo(map).bindPopup(popup);
@@ -436,7 +489,7 @@ getAJAXData().done(function(res){
             sessionStorage.setItem("ulat", lt);
             sessionStorage.setItem("ulot", ln);
             markers.clearLayers();
-            var marker = L.marker([lt,ln]).addTo(markers).bindPopup('Home'); 
+            var marker = L.marker([lt,ln],{icon : homeIcon} ).addTo(markers).bindPopup('Home'); 
       });
     }, 10000);
 
@@ -571,7 +624,6 @@ getAJAXData().done(function(res){
          $("#weathercont").hide();
          $("#weathercont2").show();
     });
-
 })  
 
 </script>
