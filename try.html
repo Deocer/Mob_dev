@@ -3,6 +3,7 @@
 
 <head>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+  <script type="text/javascript" src="src/js/index.js"></script>
   <script src="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.js"></script>
   <link type="text/css" rel="stylesheet" href="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.css" />
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -11,13 +12,57 @@
   <title>My Travel Itinerary</title>
 </head>
 
+<style type="text/css">
+
+body {
+  font-family: 'Dongle', serif;
+  background-image: url('src/imgs/bbg2.jpg');
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; 
+
+}  
+
+</style>
 
 
 
-<body class="bg-light container-fluid" style="width:100%; margin:auto;">
+<body style="max-width: 99vw; overflow-x: hidden;z-index: 0; min-height: 100vh; margin:0; padding:0; background-color: white;">
+     <div class="row container-fluid m-1 rounded-pill bg-light text-dark shadow-lg p-2" id="weathercont2">
+        <div class="col content-center text-center">
+          <img src="" class="card-img" id="secweathericon" alt="..." style="width:90px; height: 90px; margin:auto;">
+        </div>
+        <div class="col content-center text-center">
+          <h1 id="temp" style="font-size:50px;"></h1>
+        </div>
+        <div class="col content-center text-center">
+          <h1 style="font-size:50px;">13M</h1>
+        </div>
+      </div>
 
-       <div class="card mb-3" style="width: 100%; text-align: left;">
-          <div class="row g-0">
+      <br>
+      <a href="main.html" class="btn btn-primary text-light">BACK</a>
+      <br>
+
+      <div class="container-fluid mx-auto shadow-primary shadow-sm" style="background-color: transparent;">
+        
+        <h1 class="text-lead text-center text-muted" style="font-size:50px; font-weight: bolder; color: black; background-color: transparent;">EVACUATION SITE GUIDE</h1>
+
+      </div>
+       <div class="container-fluid shadow-lg p-0 content-center text-center" style="width: 90%; text-align: left;background-color: white;">
+          <div class="row g-0  container-fluid">
+            <div class="col-md-8">
+
+              <div class="card-body p-5" style="width: 100%; text-align: left; font-weight: 900;">
+                <p class="text-muted" id="" style="font-weight: 900i; font-size:30px">EVACUATION SITE:</p>
+                <h5 class="text-muted" id="loctab">Card title</h5>
+                <p class="card-text"><i class="fas fa-map-marker-alt text-muted"></i> <span id="at"></span> <span id="on"></span> .</p>
+                <p class="card-text"><small class="text-muted"> <span>Capacity:</span> <span id="cap"></span> </small></p>
+                <button type="button" id="directions" class="btn btn-primary" style="font-size:1.5vh;"><b>Show Directions</b></button>
+                <button type="button" id="nodirections" class="btn btn-primary" style="font-size:1.5vh;"><b>Remove Directions</b></button>
+              </div>             
+              
+            </div>
+
             <div class="col-md-4">
 
               <a class="hover">
@@ -25,22 +70,13 @@
                   <img  src="src/imgs/pes.jpg" id="pimg" class="img-fluid rounded-start" alt="..." style="height:20vh; width:100%;">
                 </div>
               </a>
-              
-            </div>
-            <div class="col-md-8">
-              <div class="card-body" style="width: 100%; text-align: left; font-weight: 900;">
-                <p class="text-muted" id="" style="font-weight: 900i;">EVACUATION SITE:</p>
-                <h5 class="text-muted" id="loctab">Card title</h5>
-                <p class="card-text"><i class="fas fa-map-marker-alt text-muted"></i> <span id="at"></span> <span id="on"></span> .</p>
-                <p class="card-text"><small class="text-muted"> <span>Capacity:</span> <span id="cap"></span> </small></p>
-                <button type="button" id="directions" class="btn btn-primary" style="font-size:1.5vh;"><b>Show Directions</b></button>
-                <button type="button" id="nodirections" class="btn btn-primary" style="font-size:1.5vh;"><b>Remove Directions</b></button>
-              </div>
+
             </div>
           </div>
         </div>
-        <div id="mapper">
-          <div id="map" class="ignore-css" style="width: 100%; height: 550px; overflow: hidden;z-index: 1;" padding-top:50px;></div> 
+        <br><br>
+        <div id="mapper" class="container-fluid shadow-lg">
+          <div id="map" class="ignore-css" style="width: 100%; height: 80vh; overflow: hidden;z-index: 1;" padding-top:50px;></div> 
         </div>
 
 <br>
@@ -55,6 +91,30 @@ window.onload = function() {
     var name = sessionStorage.getItem('Evac');
     var cap = sessionStorage.getItem('Cap');
     console.log(sessionStorage.getItem('Lot'));
+
+
+    function myTimer() {
+      $.ajax({
+        url: "http://api.weatherapi.com/v1/current.json?key=b183a0ff45b54688a7380107220501&q=" + uLat + ',' + uLot + "&aqi=yes",
+        type: "GET",
+        success: function(result) {
+          var tojson = JSON.stringify(result);
+          var weather = JSON.parse(tojson);
+          document.getElementById("secweathericon").src = "https:" + weather.current.condition.icon;
+          n = new Date();
+          y = n.getFullYear();
+          m = n.getMonth() + 1;
+          d = n.getDate();
+          document.getElementById("temp").textContent = weather.current.feelslike_c + "°C";
+          upsysalarm(weather.current.condition.text, '13M', 'None');
+          console.log(weather);
+        },
+        error: function(error) {
+          alert("error: " + error);
+        }
+      });
+    }
+
 
     document.getElementById("loctab").innerHTML = name ;
     document.getElementById("at").textContent = Lat;
@@ -79,8 +139,10 @@ window.onload = function() {
           });
         }
 
-
-        setInterval(getloc, 1000);
+        getloc();
+        myTimer();
+        setInterval(getloc, 100000);
+        setInterval(myTimer, 1000000);
 
 
         function addDirections(llt,lln) {
@@ -92,7 +154,7 @@ window.onload = function() {
 
         function createMap(err, response) {
           $("#mapper").empty();
-          $( "<div id=\"map\" style=\"height: 500px;\"></div>" ).appendTo("#mapper");
+          $( "<div id=\"map\" style=\"height: 60vh;\" class='shadow-md' ></div>" ).appendTo("#mapper");
           var map = L.mapquest.map('map', {
             center: [0, 0],
             layers: L.mapquest.tileLayer('map'),
@@ -107,7 +169,52 @@ window.onload = function() {
             zoom: 7
           });
 
-          var directionsLayer = L.mapquest.directionsLayer({
+          var DirectionsLayerWithCustomMarkers = L.mapquest.DirectionsLayer.extend({
+                createStartMarker: function(location, stopNumber) {
+                  console.log(location);
+                  console.log(stopNumber);
+                  return L.mapquest.textMarker(location.latLng, {
+                    text: 'Current Location',
+                    type: 'marker',
+                    icon: {
+                        primaryColor: '#027521',
+                        secondaryColor: '#027321',
+                      size: 'sm',
+                      symbol: stopNumber
+                    }
+                  });
+                },
+                createWaypointMarker: function(location, stopNumber) {
+                  console.log(location);
+                  console.log(stopNumber);
+                  return L.mapquest.textMarker(location.latLng, {
+                    text: stopNumber,
+                    type: 'marker',
+                    icon: {
+                    primaryColor: '#0275d8',
+                    secondaryColor: '#0275d8',
+                      size: 'sm',
+                      symbol: stopNumber
+                    }
+                  });
+                },
+                createEndMarker: function(location, stopNumber) {
+                  console.log(location);
+                  console.log(stopNumber);
+                  return L.mapquest.textMarker(location.latLng, {
+                    text: name,
+                    type: 'marker',
+                    icon: {
+                    primaryColor: '#0275d8',
+                    secondaryColor: '#0275d8',
+                      size: 'sm',
+                      symbol: stopNumber
+                    }
+                  });
+                }
+              });
+
+          var directionsLayer = new DirectionsLayerWithCustomMarkers({
             directionsResponse: response
           }).addTo(map);
 

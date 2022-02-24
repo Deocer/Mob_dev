@@ -1,0 +1,184 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <title>Quick Start - Leaflet</title>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="border.js" type="text/javascript"></script>  
+  <link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+  <script src="/js/leaflet-0.7.2/leaflet.ajax.min.js"></script>
+
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+    .leaflet-container {
+      height: 400px;
+      width: 600px;
+      max-width: 100%;
+      max-height: 100%;
+    }
+  </style>
+
+  
+</head>
+<body>
+
+
+
+<div id="map" style="width: 1000px; height: 600px;"></div>
+<script>
+
+var lt = sessionStorage.getItem('ulat');
+var ln = sessionStorage.getItem('ulot'); 
+
+icon = L.divIcon({
+    className: 'custom-div-icon',
+        html: "<div style='background-color:#4838cc;' class='marker-pin'></div><i class='fa fa-camera awesome'>",
+        iconSize: [30, 42],
+        iconAnchor: [15, 42]
+    });
+
+//initializing the map
+      var map = L.map('map').setView([lt,ln], 13);
+
+    const schoolIcon = L.divIcon({
+    className: 'custom-div-icon',
+        html: "<div style='background-color:#4838cc;' class='marker-pin'></div><i class='fa fa-school awesome'>",
+        iconSize: [30, 42],
+        iconAnchor: [15, 42]
+    });
+
+      const hallIcon = L.divIcon({
+          html: '<i class="fas fa-warehouse"></i>',
+          iconSize: [30, 30],
+          className: 'myDivIcon'
+      }); 
+      const homeIcon = L.divIcon({
+          html: '<i class="fas fa-home"></i>  ',
+          iconSize: [30, 30],
+          className: 'myDivIcon'
+      }); 
+
+//Implementing Open Streetmap
+
+      L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGVvY2VyIiwiYSI6ImNreTgza3hqZzFicHYycG80bGU1cHZibm4ifQ.rXESocLMAlZFXlscURdwaQ', {
+          attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+          maxZoom: 18,
+          id: 'mapbox/streets-v11',
+          tileSize: 512,
+          zoomOffset: -1,
+          accessToken: 'pk.eyJ1IjoiZGVvY2VyIiwiYSI6ImNreTgza3hqZzFicHYycG80bGU1cHZibm4ifQ.rXESocLMAlZFXlscURdwaQ'
+      }).addTo(map);
+
+      L.marker([14.6471013371964,121.10341292358]).addTo(map).bindPopup('Home');
+      L.marker([lt,ln]).addTo(map).bindPopup('PHS');
+
+console.log(lt);
+console.log(17.6554907);
+var imageUrl = 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Sydney_Opera_House_-_Dec_2008.jpg/1024px-Sydney_Opera_House_-_Dec_2008.jpg',
+  imageBounds = [14.612820512580317,121.07345581054689, [lt+3, ln]];
+
+L.imageOverlay(imageUrl, imageBounds).addTo(map);
+L.imageOverlay(imageUrl, imageBounds).bringToFront();
+
+
+var states = [{
+    "type": "Feature",
+    "properties": {"party": "Republican"},
+    "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+            [121.0744642194859, 14.62328312054317],
+            [121.0744642194859, 14.62418244090689],
+            [121.0753936236556, 14.62418244090689],
+            [121.0753936236556, 14.62328312054317],
+            [121.0744642194859, 14.62328312054317]
+        ]]
+    }
+}, {
+    "type": "Feature",
+    "properties": {"party": "Democrat"},
+    "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+            [121.0744642194859, 14.62418244090689],
+            [121.0744642194859, 14.62508176127062],
+            [121.0753936236556, 14.62508176127062],
+            [121.0753936236556, 14.62418244090689],
+            [121.0744642194859, 14.62418244090689]
+        ]]
+    }
+}, {
+    "type": "Feature",
+    "properties": {"party": "Democrat"},
+    "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+            [121.0744642194859, 14.62508176127062],
+            [121.0744642194859, 14.62598108163434],
+            [121.0753936236556, 14.62598108163434],
+            [121.0753936236556, 14.62508176127062],
+            [121.0744642194859, 14.62508176127062]
+        ]]
+      }
+}, {
+    "type": "Feature",
+    "properties": {"party": "Democrat"},
+    "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+            [121.0744642194859, 14.62598108163434],
+            [121.0744642194859, 14.62688040199807],
+            [121.0753936236556, 14.62688040199807],
+            [121.0753936236556, 14.62598108163434],
+            [121.0744642194859, 14.62598108163434]
+        ]]
+    }
+},{
+    "type": "Feature",
+    "properties": {"party": "Democrat"},
+    "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+            [121.0744642194859, 14.62688040199807],
+            [121.0744642194859, 14.62777972236179],
+            [121.0753936236556, 14.62777972236179],
+            [121.0753936236556, 14.62688040199807],
+            [121.0744642194859, 14.62688040199807]
+        ]]
+    }
+}, {
+    "type": "Feature",
+    "properties": {"party": "Democrat"},
+    "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+            [121.0744642194859, 14.62777972236179],
+            [121.0744642194859, 14.62867904272552],
+            [121.0753936236556, 14.62867904272552],
+            [121.0753936236556, 14.62777972236179],
+            [121.0744642194859, 14.62777972236179]
+        ]]
+    }
+}
+
+];
+
+var myLayer = L.geoJSON().addTo(map);
+myLayer.addData(level);
+myLayer.addData(level2);
+//myLayer.addData(Dlu);
+
+</script>
+
+
+
+</body>
+</html>
