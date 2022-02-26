@@ -1,15 +1,10 @@
 document.addEventListener('deviceready', onDeviceReady, false);
 function onDeviceReady() {
-    console.log('Running cordova-' + cordova.platformId + '@' + cordova.version);
     screen.orientation.lock('portrait');       
 }
 
 function myFunc(){
      myFunc = function(){}; // kill it as soon as it was called
-     console.log("once");
-     screen.orientation.unlock();
-     screen.orientation.lock('landscape');
-     screen.orientation.unlock();
      screen.orientation.lock('portrait'); 
 };
 

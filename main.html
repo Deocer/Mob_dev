@@ -120,7 +120,7 @@ body {
         <p style="font-size:30px" id="wind"></p>
       </div>
       <div class="col">
-        <p style="font-size:30px">13M</p>
+        <p style="font-size:30px" id="wtr">13M</p>
       </div>
     </div>
   </div>
@@ -133,7 +133,7 @@ body {
       <h1 id="temp" style="font-size:40px;"></h1>
     </div>
     <div class="col">
-      <h1 style="font-size:40px;">13M</h1>
+      <h1 style="font-size:40px;" id="wtr2"></h1>
     </div>
   </div>
 
@@ -186,8 +186,10 @@ body {
               </div>
             </div>
              -->
-
-            <button class="btn btn-primary w-100" id="card-direction">SHOW DIRECTIONS</button>
+             <div id="buttonappend">
+               <button class="btn btn-primary w-100" id="card-direction-button">SHOW DIRECTIONS</button>
+             </div>
+            
           </div>
         </div>
       </div>
@@ -210,15 +212,15 @@ body {
       <div id="hazardlegend" class="row g-0 border rounded-pill shadow-lg m-2 p-4" style="width:100%; margin:auto; text-align: center;background-color: white;display: none; ">
         <div class="col">
             <img src="src/imgs/vh.png" style="height:30px; width: 20px;" >
-            <h5>Very High Susceptibility</h5>
+            <p><b>Very High Susceptibility</b></p>
         </div>
         <div class="col">
             <img src="src/imgs/h.png" style="height:30px; width: 20px;">
-            <h5>High Susceptibility</h5>     
+            <p> <b>High Susceptibility</b> </p>     
         </div>
         <div class="col">
             <img src="src/imgs/m.png" style="height:30px; width: 20px;">
-            <h5>Moderate Susceptibility</h5>
+            <p> <b>Moderate Susceptibility</b> </p>
         </div>
       </div>
 
@@ -229,12 +231,34 @@ body {
       <br> 
     </div>
     <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-      <br>
+  
+ <!--   Table code       -->
+
       <div style="margin:auto; text-align:center;" style="background-color:whitesmoke;">
-        <br>
         <div id="columnchart_values" style="width: 80%; padding-left: 30px;"></div>
       </div>
+
+ <!--   Legend code       -->
+
+      <div id="alarmlvl" class="row g-0 border rounded shadow-lg m-2 p-4" style="width:100%; margin:auto;background-color: white;display: block; ">
+        <div class="col">
+            <p>  <object class="mx-4" style="height:20px; width: 20px;background-color: lawngreen;"></object>  <b>15M -  Alarm Level 1</b></p>
+        </div>
+        <div class="col">
+            <p>  <object class="mx-4" style="height:20px; width: 20px;background-color: yellow;"></object>  <b>16M - Alarm Level 2</b> </p>     
+        </div>
+        <div class="col">
+            <p>  <object class="mx-4" style="height:20px; width: 20px;background-color: firebrick;"></object> <b>18M - Alarm Level 3</b></p> 
+        </div>
+      </div>
+
+
+<!--   Typhoon List       -->
+
       <div id="typhoon" style="background-color:whitesmoke;"> </div>
+
+
+
     </div>
   </div>
 
@@ -308,6 +332,27 @@ function getAJAXData() {
     })
 }
 
+function setAJAXData() {
+      return $.ajax({
+      url: 'https://evac-marikina-default-rtdb.asia-southeast1.firebasedatabase.app/.json?orderBy="$key"&print=pretty',
+      type: "GET",
+      success: function(res) {
+      var ssites = JSON.stringify(res);
+
+        // the data is converted to JSON 
+      var sjsob = JSON.parse(ssites);
+
+      document.getElementById("wtr").textContent = sjsob.wtr[1].data;
+      document.getElementById("wtr2").textContent = sjsob.wtr[1].data;
+
+      },
+      error: function(error) {
+        alert("error: " + error);
+      }
+    })
+}
+
+
 //Random colors for the table
 function getRandomColor() {
   var letters = '0123456789ABCDEF';
@@ -325,6 +370,8 @@ function redirect(lat, lot, evac, src, cap) {
   sessionStorage.setItem("src", src);
   sessionStorage.setItem("Evac", evac);
   sessionStorage.setItem("Cap", cap);
+  var wtr = document.getElementById("wtr").textContent;
+  sessionStorage.setItem("Wtr", wtr);
   window.location.href = 'try.html';
 }
 
@@ -341,14 +388,10 @@ function fill_card(lat, lot, evac, src, cap) {
   //document.getElementById("on").textContent = lot;
   //document.getElementById("cap").textContent = cap;
   document.getElementById("pimg").src = src;
-  const el = document.getElementById("card-direction");
-  el.addEventListener("click", redirect(lat, lot, evac, src, cap));
+  $("#buttonappend").empty();
+  $( "<div class='btn btn-primary w-100' onclick='redirect("+"`"+lat+"`"+','+"`"+lot+"`"+','+"`"+evac+"`"+','+"`"+src+"`"+','+"`"+cap+"`"+")' >SHOW DIRECTIONS </div>" ).appendTo("#buttonappend");
 }
 
-//Helps fill card dont remove func
-function click(id) {
-  //$('#' + id).trigger('click');
-}
 
 </script>
 
@@ -383,7 +426,18 @@ $.ajax({
     document.getElementById("weather").textContent = weather.current.condition.text;
     document.getElementById("wind").textContent = weather.current.wind_kph + "km/h";
     document.getElementById("c").textContent = weather.current.feelslike_c + "°C";
-    sysalarm(weather.current.condition.text, '13M', 'None');
+    var wtrlvl = document.getElementById("wtr").textContent;
+    var allert ='';
+    if (wtrlvl < 15 ) {
+      allert = 'None';
+    }else if ( wtrlvl == 15 && wtrlvl < 16) {
+      allert = 'First Alarm'
+    }else if (wtrlvl == 16 && wtrlvl < 18) {
+      allert = 'Second Alarm'
+    }else if (wtrlvl == 18 || wtrlvl > 18 ) {
+      allert = 'Third Alarm'
+    }
+    sysalarm(weather.current.condition.text, wtrlvl, allert);
     console.log(weather);
     swal({
       title: "Welcome!",
@@ -400,9 +454,10 @@ $.ajax({
 
 
 <script type="text/javascript">
-  
-setInterval(myTimer, 100000);
 
+setAJAXData();  
+setInterval(myTimer, 100000);
+setInterval(setAJAXData, 100000);
 //Main map function
 getAJAXData().done(function(res){
 
@@ -415,6 +470,7 @@ getAJAXData().done(function(res){
 
 
     console.log(jsob);
+
 
     //Get stored lat and lot values
     var lt = sessionStorage.getItem('ulat');
@@ -508,7 +564,9 @@ getAJAXData().done(function(res){
 
 
     //User's home marker
-    //L.marker([lt,ln]).addTo(map).bindPopup('Home');
+
+    var userhome = L.marker([lt,ln] ,{icon : homeIcon}).addTo(map).bindPopup('Home');
+
     markers = new L.LayerGroup().addTo(map);
 
     setInterval(function(){
@@ -518,7 +576,8 @@ getAJAXData().done(function(res){
             sessionStorage.setItem("ulat", lt);
             sessionStorage.setItem("ulot", ln);
             markers.clearLayers();
-            var marker = L.marker([lt,ln],{icon : homeIcon} ).addTo(markers).bindPopup('Home'); 
+            L.marker([lt,ln],{icon : homeIcon} ).addTo(markers).bindPopup('Home');
+            userhome.setOpacity(0); 
       });
     }, 10000);
 

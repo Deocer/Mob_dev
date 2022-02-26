@@ -143,14 +143,18 @@
             <label for="inputEmail4" class="form-label">Change tweet</label>
             <input type="email" id="tw" class="form-control" >
           </div>
-          <div class="col-md-6">
+          <div class="col-md-4">
             <label for="inputEmail4" class="form-label">Change Livefeed link</label>
             <input type="email" id="fb" class="form-control" >
           </div>
-
+          <div class="col-md-2">
+            <label for="inputEmail4" class="form-label">Change Water Level</label>
+            <input type="email" id="wtr" class="form-control" >
+          </div>
           <div class="col-12">
             <button type="button" id="addtwit" class="btn btn-primary">Save Tweet Changes</button>
             <button type="button" id="addfb" class="btn btn-primary">Save Livefeed Changes</button>
+            <button type="button" id="addwtr" class="btn btn-primary">Save Changes</button>
           </div>
         </form> 
 
@@ -398,7 +402,7 @@ firebase.initializeApp(config);
 var provider = new firebase.auth.GoogleAuthProvider();
 
 
-firebase.auth().signInWithEmailAndPassword("", "")
+firebase.auth().signInWithEmailAndPassword("moralesdeocer@gmail.com", "ben10ultalien")
   .then((userCredential) => {
     // Signed in
     var user = userCredential.user;
@@ -422,6 +426,13 @@ function writetwitterData(Id,imageUrl) {
     data : imageUrl
   });
 }
+
+function writeWtrData(Id,imageUrl) {
+  firebase.database().ref('wtr/' + Id).set({
+    data : imageUrl
+  });
+}
+
 
 function writeSitesData(Id,name,cap,lat,lot,src,type) {
   firebase.database().ref('sites/' + Id).set({
@@ -786,6 +797,12 @@ $('#addtwit').click(function () {
 $('#addfb').click(function () {
   var n = $("#fb").val();
    writeFbData(1, n);
+});
+
+
+$('#addwtr').click(function () {
+  var n = $("#wtr").val();
+   writeWtrData(1, n);
 });
 
 $('#edit').click(function () {
