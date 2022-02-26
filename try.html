@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="src/css/direction.css">
   <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" data-auto-a11y="true"></script>
   <script type="text/javascript" src="src/js/index.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Dongle">
   <title>My Travel Itinerary</title>
 </head>
 
@@ -37,53 +38,51 @@ body {
           <img src="" class="card-img" id="secweathericon" alt="..." style="width:90px; height: 90px; margin:auto;">
         </div>
         <div class="col content-center text-center">
-          <h1 id="temp"></h1>
+          <h1 id="temp" style="font-size:5rem"></h1>
         </div>
         <div class="col content-center text-center">
-          <h1 id="wtr"></h1>
+          <h1 id="wtr" style="font-size:5rem"></h1>
         </div>
       </div>
 
       <br>
-      <a href="main.html" class="btn btn-primary text-light">BACK</a>
+      
       <br>
 
-      <div class="container-fluid mx-auto shadow-primary shadow-sm" style="background-color: transparent;">
+
+      <div class="container-fluid d-flex justify-content-center">
         
-        <h1 class="text-lead text-center text-muted" style="font-size:50px; font-weight: bolder; color: black; background-color: transparent;">EVACUATION SITE GUIDE</h1>
-
-      </div>
-       <div class="container-fluid shadow-lg p-0 content-center text-center" style="width: 90%; text-align: left;background-color: white;">
-          <div class="row g-0  container-fluid">
-            <div class="col-8">
-
-              <div class="card-body p-5" style="width: 100%; text-align: left; font-weight: 900;">
-                <p class="text-muted" id="" style="font-weight: 900i; font-size:30px">EVACUATION SITE:</p>
-                <h5 class="text-muted" id="loctab">Card title</h5>
-                <p>Built     : <span></span></p>
-                <p>Last used : <span></span></p>
-                <p>Class     : Emergency Evacuation Site</p>
-                <p>Equipments: <span></span></p>
-
-                <p class="card-text"><i class="fas fa-map-marker-alt text-muted"></i> <span id="at"></span> <span id="on"></span> .</p>
-                <p class="card-text"><small class="text-muted"> <span>Capacity:</span> <span id="cap"></span> </small></p>
-                <button type="button" id="directions" class="btn btn-primary" style="font-size:1.5vh;"><b>Show Directions</b></button>
-                <button type="button" id="nodirections" class="btn btn-primary" style="font-size:1.5vh;"><b>Remove Directions</b></button>
-              </div>             
+        <div class="card shadow-lg" style="width: 70vw;">
+          <img src="" id="pimg" class="card-img-top" alt="..." style="height: 30vh;">
+          <div class="card-body p-5">
+            <div class="container-fluid mx-auto shadow-primary shadow-sm" style="background-color: transparent;">
               
-            </div>
-
-            <div class="col-4">
-
-              <a class="hover">
-                <div class="img">
-                  <img  src="src/imgs/pes.jpg" id="pimg" class="img-fluid rounded-start" alt="..." style="height:100%; width:100%;">
-                </div>
-              </a>
+              <h1 class="text-lead text-center text-muted" style="font-size:50px; font-weight: bolder; color: black; background-color: transparent;">EVACUATION SITE GUIDE</h1>
 
             </div>
+              <div class="p-5" style="font-size:2.5rem;">
+                
+                <p class="card-text text-muted" id="loctab" ></p>
+                <p class="card-text text-muted" id="cap" ></p>
+                <p class="card-text text-muted" >Built     : <span id="bb"></span></p>
+                <p class="card-text text-muted" >Last used : <span id="last"></span></p>
+                <p class="card-text text-muted" >Class     : Emergency Evacuation Site</p>
+                <p class="card-text text-muted" >Equipments: <span id="equip"></span></p>
+                <p class="card-text"><i class="fas fa-map-marker-alt text-muted"></i> <span id="at" class="text-muted"></span> <span id="on" class="text-muted"></span> .</p>
+
+              </div>
+              <button type="button" id="directions" class="btn btn-primary w-100" style="font-size:3rem;"><b>Show Directions <i class="fas fa-map-marker-alt"></i></b></button>
+              <button type="button" id="nodirections" class="btn btn-primary w-100" style="font-size:3rem;"><b>Remove Directions <i class="fas fa-map-marker-alt"></i></b></button>
+              <a href="main.html" class="btn btn-danger text-light w-100" style="font-size:3rem;"><i class="fa fa-chevron-left" aria-hidden="true"> </i> Back to Main page</a>
           </div>
         </div>
+
+
+      </div>
+
+
+
+
         <br><br>
         <div id="mapper" class="container-fluid shadow-lg" style="margin:auto; text-align: center;">
 
@@ -106,7 +105,11 @@ window.onload = function() {
     var name = sessionStorage.getItem('Evac');
     var cap = sessionStorage.getItem('Cap');
     var lvl = sessionStorage.getItem('Wtr');
-    console.log(sessionStorage.getItem('Lot'));
+    var built = sessionStorage.getItem('built');
+    var equip = sessionStorage.getItem('equip');
+    var eclass = sessionStorage.getItem('eclass');
+    var lastimp = sessionStorage.getItem('lst');
+    console.log(built);
 
 
     function myTimer() {
@@ -125,11 +128,11 @@ window.onload = function() {
           var allert ='';
               if (lvl < 15 ) {
                 allert = 'None';
-              }else if (lvl == 15 && wtrlvl < 16) {
+              }else if (lvl == 15 && lvl < 16) {
                 allert = 'First Alarm'
-              }else if (lvl == 16 && wtrlvl < 18) {
+              }else if (lvl == 16 && lvl < 18) {
                 allert = 'Second Alarm'
-              }else if (lvl == 18 || wtrlvl > 18 ) {
+              }else if (lvl == 18 || lvl > 18 ) {
                 allert = 'None'
               }
           sysalarm(weather.current.condition.text, lvl, allert);
@@ -148,6 +151,9 @@ window.onload = function() {
     document.getElementById("cap").textContent = cap;
     document.getElementById("pimg").src = src;
     document.getElementById("wtr").textContent = lvl;
+    document.getElementById("bb").textContent = built;
+    document.getElementById("equip").textContent = equip;
+    document.getElementById("last").textContent = lastimp;
 
 
         L.mapquest.key = 'UBI3Wc0udk0csdys2DFuAJAdhxdX00E9';

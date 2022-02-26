@@ -180,6 +180,22 @@
         <input type="text" id="src" class="form-control">
       </div>
       <div class="col-md-3">
+        <label for="inputCity" class="form-label">Built</label>
+        <input type="text" id="bb"  class="form-control" >
+      </div>
+      <div class="col-md-3">
+        <label for="inputCity" class="form-label">Last Used</label>
+        <input type="text" id="last" class="form-control">
+      </div>
+      <div class="col-md-4">
+       <label for="inputCity" class="form-label">Evacuation Class</label>
+        <input type="text" id="evclass" class="form-control">
+      </div>
+      <div class="col-md-2">
+        <label class="form-label">Equipments</label>
+        <input type="text" id="eq" class="form-control">
+      </div>
+      <div class="col-md-3">
         <label for="inputCity" class="form-label">Lat</label>
         <input type="text" id="lat"  class="form-control" >
       </div>
@@ -434,7 +450,7 @@ function writeWtrData(Id,imageUrl) {
 }
 
 
-function writeSitesData(Id,name,cap,lat,lot,src,type) {
+function writeSitesData(Id,name,cap,lat,lot,src,type,bbuilt,equip,eclass,lst) {
   firebase.database().ref('sites/' + Id).set({
     name: name,
     cap: cap,
@@ -442,7 +458,11 @@ function writeSitesData(Id,name,cap,lat,lot,src,type) {
     lot: lot,
     name: name,
     src: src,
-    type: type
+    type: type,
+    built: bbuilt,
+    equip: equip,
+    evacclass: eclass,
+    lastimp: lst
   });
 }
 
@@ -472,6 +492,22 @@ function writeHeavyrainData(Id,lvl,alarm,time,src,ars) {
     Areas:ars
   });
 }
+
+
+function DeleteSite(Id) {
+  firebase.database().ref('sites/' + Id).remove();
+  $("#evactable").html("");
+  ajaxcall();
+}
+
+function DeleteTyphoons(Id) {
+  firebase.database().ref('typhoons/' + Id).remove();
+  $("#raintable").html("");
+  $("#typhoontable").html("");
+  tajaxcall();
+}
+
+
 
 writeFbData(1, fb);
 writetwitterData(1, twitter);
@@ -503,7 +539,6 @@ $("#curr").hide();
 //$('#thisdiv').load(document.URL +  ' #thisdiv');
 
 
-
   function ajaxcall() {
       $.ajax({
         url: 'https://evac-marikina-default-rtdb.asia-southeast1.firebasedatabase.app/.json?orderBy="$key"&print=pretty',
@@ -525,9 +560,19 @@ $("#curr").hide();
           '<th scope="col">'+jsob.sites[i].type+'</th>'+
           '<th scope="col">'+jsob.sites[i].cap+'</th>'+
           '<th scope="col">'+jsob.sites[i].src+'</th>'+
-          '<th scope="col"><button id="'+i+'">DELETE</button></th>'+
+          '<th scope="col"><button id="'+i+'" onclick="DeleteSite('+i+')" >DELETE</button></th>'+
            '<th scope="col"><button id="'+i+'" onclick="fillform('+
-           '`'+jsob.sites[i].name+'`'+','+'`'+jsob.sites[i].src+'`'+','+'`'+jsob.sites[i].lat+'`'+','+'`'+jsob.sites[i].lot+'`'+','+'`'+jsob.sites[i].type+'`'+','+'`'+jsob.sites[i].cap+'`'+','+'`'+i+'`'+
+           '`'+jsob.sites[i].name+'`'+','
+           +'`'+jsob.sites[i].src+'`'+','
+           +'`'+jsob.sites[i].lat+'`'+','
+           +'`'+jsob.sites[i].lot+'`'+','
+           +'`'+jsob.sites[i].type+'`'+','
+           +'`'+jsob.sites[i].cap+'`'+','
+           +'`'+jsob.sites[i].built+'`'+','
+           +'`'+jsob.sites[i].equip+'`'+','
+           +'`'+jsob.sites[i].evacclass+'`'+','
+           +'`'+jsob.sites[i].lastimp+'`'+','
+           +'`'+i+'`'+
            ')">EDIT</button></th>';
 
            document.getElementById("evactable").appendChild(twit);
@@ -580,7 +625,8 @@ $("#curr").hide();
             '<th scope="col">'+jsob.typhoons[i].Areas+'</th>'+
             '<th scope="col"><button id="'+i+'" onclick="rainform('+
             '`'+jsob.typhoons[i].Cause+'`'+','+'`'+jsob.typhoons[i].Timeframe+'`'+','+'`'+jsob.typhoons[i].level+'`'+','+'`'+jsob.typhoons[i].Areas+'`'+','+'`'+jsob.typhoons[i].Alarm_level+'`'+','+'`'+i+'`'+
-            ')">EDIT</button></th>';
+            ')">EDIT</button></th>'+
+            '<th scope="col"><button id="'+i+'" onclick="DeleteTyphoons('+i+')" >DELETE</button></th>';
 
              document.getElementById("raintable").appendChild(twit);
 
@@ -614,7 +660,8 @@ $("#curr").hide();
             '<th scope="col">'+jsob.typhoons[i].Areas+'</th>'+
             '<th scope="col"><button id="'+i+'" onclick="typhoonform('+
            '`'+jsob.typhoons[i].Cause+'`'+','+'`'+jsob.typhoons[i].name+'`'+','+'`'+jsob.typhoons[i].winds+'`'+','+'`'+jsob.typhoons[i].pressure+'`'+','+'`'+jsob.typhoons[i].Cause+'`'+','+'`'+jsob.typhoons[i].Formed+'`'+','+'`'+jsob.typhoons[i].Dissipated+'`'+','+'`'+jsob.typhoons[i].Timeframe+'`'+','+'`'+jsob.typhoons[i].level+'`'+','+'`'+jsob.typhoons[i].Areas+'`'+','+'`'+i+'`'+
-           ')">EDIT</button></th>';
+           ')">EDIT</button></th>'+
+           '<th scope="col"><button id="'+i+'" onclick="DeleteTyphoons('+i+')" >DELETE</button></th>';
 
              document.getElementById("typhoontable").appendChild(twit);
 
@@ -639,13 +686,17 @@ $("#curr").hide();
     });
   }
 
-function fillform(name,src,lat,lot,type,cap,num){
+function fillform(name,src,lat,lot,type,cap,built,equip,eclass,lst,num){
   $("#name").val(name);
   $("#src").val(src);
   $("#lat").val(lat);
   $("#lot").val(lot);
   $("#type").val(type);
   $("#cap").val(cap);
+  $("#bb").val(built);
+  $("#eq").val(equip);
+  $("#eclass").val(eclass);
+  $("#last").val(lst);
   $("#num").val(num);
   $("#add").hide();
   $("#edit").show();
@@ -812,9 +863,14 @@ $('#edit').click(function () {
    var ln = $("#lot").val();
    var t = $("#type").val();
    var c = $("#cap").val();
+   var bb = $("#bb").val();
+   var eqq = $("#eq").val();
+   var ecls = $("#evclass").val();
+   var ls = $("#last").val();
+
    var lmt = $("#num").val();
    $("#ed").hide();
-   writeSitesData(lmt, n,c,lt,ln,s,t);
+   writeSitesData(lmt,n,c,lt,ln,s,t,bb,eqq,ecls,ls);
    $("#evactable").html("");
    $("#add").show();
    $("#edit").hide();
@@ -825,6 +881,10 @@ $('#edit').click(function () {
    $("#lot").val('');
    $("#cap").val('');
    $("#num").val('');
+   $("#bb").val('');
+   $("#eq").val('');
+   $("#evclass").val('');
+   $("#last").val('');
    ajaxcall();
 });
 
@@ -835,9 +895,14 @@ $('#add').click(function () {
    var ln = $("#lot").val();
    var t = $("#type").val();
    var c = $("#cap").val();
+   var bb = $("#bb").val();
+   var eqq = $("#eq").val();
+   var ecls = $("#evclass").val();
+   var ls = $("#last").val();
+
    var lmt = $("#sites").val();
    $("#ed").hide();
-   writeSitesData(lmt, n,c,lt,ln,s,t);
+   writeSitesData(lmt,n,c,lt,ln,s,t,bb,eqq,ecls,ls);
    $("#evactable").html("");
    $("#add").show();
    $("#edit").hide();
@@ -847,6 +912,10 @@ $('#add').click(function () {
    $("#lat").val('');
    $("#lot").val('');
    $("#cap").val('');
+   $("#bb").val('');
+   $("#eq").val('');
+   $("#evclass").val('');
+   $("#last").val('');
    $("#num").val('');
    ajaxcall();
 });

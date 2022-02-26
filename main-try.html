@@ -4,25 +4,6 @@
   <meta charset="utf-8" />
   <title>Simple DynamicMapLayer</title>
   <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
-
-  <!-- Load Leaflet from CDN -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-    crossorigin=""/>
-  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-    crossorigin=""></script>
-
-  <!-- Load Esri Leaflet from CDN -->
-  <script src="https://unpkg.com/esri-leaflet@3.0.6/dist/esri-leaflet.js"
-    integrity="sha512-ywMWgY6GHuNAHtUE6Ng8KRIls3VL3e3ESkPOWEJIduGdKUJ9s+YieoTALd5GsuyB9PtF0mbn3y6Zf/iejMVrSQ=="
-    crossorigin=""></script>
-
-  <!-- Load Esri Leaflet Vector from CDN -->
-  <script src="https://unpkg.com/esri-leaflet-vector@3.1.1/dist/esri-leaflet-vector.js"
-    integrity="sha512-7rLAors9em7cR3/583gZSvu1mxwPBUjWjdFJ000pc4Wpu+fq84lXF1l4dbG4ShiPQ4pSBUTb4e9xaO6xtMZIlA=="
-    crossorigin=""></script>
-
   <style>
     body { margin:0; padding:0; }
     #map { position: absolute; top:0; bottom:0; right:0; left:0; }
@@ -30,7 +11,7 @@
 </head>
 <body>
 
-<div id="map"></div>
+
 
 <script>
   var map = L.map('map').setView([14.6471013371964, 121.10341292358 ], 4);

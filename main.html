@@ -30,11 +30,18 @@
   <title></title>
 </head>
 <style type="text/css">
+
+html, body {
+    max-width: 99vh;
+    overflow-x: hidden;
+}
+
+
 body {
   font-family: 'Dongle', serif;
   background-image: url('src/imgs/bbg.jpg');
   background-repeat: no-repeat; /* Do not repeat the image */
-  background-size: auto; 
+  background-size: contain; 
 
 }
 
@@ -101,7 +108,7 @@ body {
 
 </style>
 
-<body style="max-width: 97vw; overflow-x: hidden;z-index: 0; min-height: 100vh; margin:0; padding:0; background-color: white;">
+<body style="max-width: 99vw; overflow-x: hidden;z-index: 0; min-height: 100vh; margin:0; padding:0; background-color: white;">
   <div id="fb-root"></div>
   <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v12.0" nonce="hdJdVgSL"></script>
   <div id="weathercont" style=" 
@@ -114,26 +121,26 @@ body {
     <div class="col"> <img src="" class="card-img wcard__weather__icon" id="weathericon" alt="..." style="width:90px; height: 90px; margin:auto;"> </div>
     <div class="row" style="text-align:center;">
       <div class="col">
-        <p style="font-size:30px" id="c"></p>
+        <p style="font-size:2.5rem" id="c"></p>
       </div>
       <div class="col">
-        <p style="font-size:30px" id="wind"></p>
+        <p style="font-size:2.5rem" id="wind"></p>
       </div>
       <div class="col">
-        <p style="font-size:30px" id="wtr">13M</p>
+        <p style="font-size:2.5rem" id="wtr">13M</p>
       </div>
     </div>
   </div>
 
   <div class="row container-fluid m-1 rounded-pill bg-light text-dark shadow-lg" id="weathercont2">
-    <div class="col">
+    <div class="col" style="width:30vw">
       <img src="" class="card-img" id="secweathericon" alt="..." style="width:50px; height: 50px; margin:auto;">
     </div>
-    <div class="col">
-      <h1 id="temp" style="font-size:40px;"></h1>
+    <div class="col" style="width:30vw">
+      <h1 id="temp" style="font-size:2rem;"></h1>
     </div>
-    <div class="col">
-      <h1 style="font-size:40px;" id="wtr2"></h1>
+    <div class="col" style="width:30vw">
+      <h1 style="font-size:2rem;" id="wtr2"></h1>
     </div>
   </div>
 
@@ -142,14 +149,14 @@ body {
     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab" style="background-color:transparent;">
       <ul class="nav nav-tabs" id="myTab2" role="tablist" style="width:100vw;">
         <li class="nav-item" role="presentation">
-          <button style="width:50vw;" class="nav-link active maincont" id="home-tab2" data-bs-toggle="tab" data-bs-target="#home2" type="button" role="tab" aria-controls="home" aria-selected="true">Twitter Updates</button>
+          <button style="width:50vw;font-size:1.5rem;" class="nav-link active maincont text-dark" id="home-tab2" data-bs-toggle="tab" data-bs-target="#home2" type="button" role="tab" aria-controls="home" aria-selected="true">Twitter Updates</button>
         </li>
         <li class="nav-item" role="presentation">
-          <button style="width:50vw;" class="nav-link maincont" id="profile-tab2" data-bs-toggle="tab" data-bs-target="#profile2" type="button" role="tab" aria-controls="profile" aria-selected="false">Facebook Feed</button>
+          <button style="width:50vw;font-size:1.5rem;" class="nav-link maincont text-dark" id="profile-tab2" data-bs-toggle="tab" data-bs-target="#profile2" type="button" role="tab" aria-controls="profile" aria-selected="false">Facebook Feed</button>
         </li>
       </ul>
       <div class="tab-content">
-        <div class="tab-pane active" id="home2" role="tabpanel" aria-labelledby="home-tab"style ="overflow-x: hidden ">
+        <div class="tab-pane active" id="home2" role="tabpanel" aria-labelledby="home-tab"style ="overflow-x: hidden; background-color:white; ">
           <a class="twitter-timeline" href="https://twitter.com/MarikinaPIO" style="height:100vh; overflow-y: scroll;"></a>
         </div>
         <div class="tab-pane" id="profile2" role="tabpanel" aria-labelledby="profile-tab">
@@ -194,7 +201,9 @@ body {
         </div>
       </div>
 
-      <div id="legend" class="row g-0 border rounded-pill shadow-lg py-1" style="width:100%; margin:auto; text-align: center;background-color: white;">
+      <br>
+
+      <div id="legend" class="row g-0 border rounded-3 shadow-lg py-1" style="width:100%; margin:auto; text-align: center;background-color: white;">
         <div class="col">
             <img src="src/imgs/icon-evac.png" style="height:30px; width: 20px;" >
             <h2>Schools</h2>
@@ -209,7 +218,7 @@ body {
         </div>
       </div>
 
-      <div id="hazardlegend" class="row g-0 border rounded-pill shadow-lg m-2 p-4" style="width:100%; margin:auto; text-align: center;background-color: white;display: none; ">
+      <div id="hazardlegend" class="row g-0 border rounded-3 shadow-lg m-2 p-4" style="width:100%; margin:auto; text-align: center;background-color: white;display: none; ">
         <div class="col">
             <img src="src/imgs/vh.png" style="height:30px; width: 20px;" >
             <p><b>Very High Susceptibility</b></p>
@@ -235,7 +244,7 @@ body {
  <!--   Table code       -->
 
       <div style="margin:auto; text-align:center;" style="background-color:whitesmoke;">
-        <div id="columnchart_values" style="width: 80%; padding-left: 30px;"></div>
+        <div id="columnchart_values" style="width: 80vw; overflow-x:hidden;"></div>
       </div>
 
  <!--   Legend code       -->
@@ -342,8 +351,8 @@ function setAJAXData() {
         // the data is converted to JSON 
       var sjsob = JSON.parse(ssites);
 
-      document.getElementById("wtr").textContent = sjsob.wtr[1].data;
-      document.getElementById("wtr2").textContent = sjsob.wtr[1].data;
+      document.getElementById("wtr").textContent = sjsob.wtr[1].data+"M";
+      document.getElementById("wtr2").textContent = sjsob.wtr[1].data+"M";
 
       },
       error: function(error) {
@@ -364,19 +373,23 @@ function getRandomColor() {
 }
 
 //Sets variable for the redirect to directions page
-function redirect(lat, lot, evac, src, cap) {
+function redirect(lat, lot, evac, src, cap, built, equip , eclass,lst) {
   sessionStorage.setItem("Lat", lat);
   sessionStorage.setItem("Lot", lot);
   sessionStorage.setItem("src", src);
   sessionStorage.setItem("Evac", evac);
   sessionStorage.setItem("Cap", cap);
+  sessionStorage.setItem("built", built);
+  sessionStorage.setItem("equip", equip);
+  sessionStorage.setItem("eclass", eclass);
+  sessionStorage.setItem("lst", lst);
   var wtr = document.getElementById("wtr").textContent;
   sessionStorage.setItem("Wtr", wtr);
   window.location.href = 'try.html';
 }
 
 //Fills the preview card when a evac area is tapped
-function fill_card(lat, lot, evac, src, cap) {
+function fill_card(lat, lot, evac, src, cap, built, equip , eclass, lst) {
   document.getElementById("loctab").innerHTML = "";
   //document.getElementById("at").textContent = "";
   //document.getElementById("on").textContent = "";
@@ -389,7 +402,7 @@ function fill_card(lat, lot, evac, src, cap) {
   //document.getElementById("cap").textContent = cap;
   document.getElementById("pimg").src = src;
   $("#buttonappend").empty();
-  $( "<div class='btn btn-primary w-100' onclick='redirect("+"`"+lat+"`"+','+"`"+lot+"`"+','+"`"+evac+"`"+','+"`"+src+"`"+','+"`"+cap+"`"+")' >SHOW DIRECTIONS </div>" ).appendTo("#buttonappend");
+  $( "<div class='btn btn-primary w-100' onclick='redirect("+"`"+lat+"`"+','+"`"+lot+"`"+','+"`"+evac+"`"+','+"`"+src+"`"+','+"`"+cap+"`"+','+"`"+built+"`"+','+"`"+equip+"`"+','+"`"+eclass+"`"+','+"`"+lst+"`"+")' >SHOW DIRECTIONS </div>" ).appendTo("#buttonappend");
 }
 
 
@@ -541,7 +554,27 @@ getAJAXData().done(function(res){
     //Loop through data from firebase to make markers on map
     for(let i = 0; i < lmt; i++) {
       if(jsob.sites[i].type === "school") {
-        var popup = L.popup().setContent("<div class='maincont'  id='" + jsob.sites[i].name + "' ontouchstart='fill_card(" + jsob.sites[i].lat + "," + jsob.sites[i].lot + "," + "`" + jsob.sites[i].name + "`" + "," + "`" + jsob.sites[i].src + "`" + "," + "`" + jsob.sites[i].cap + "`" + ")'>" + '<p>' + jsob.sites[i].name + '' + "</p>" + "<button class='btn btn-primary' id='" + jsob.sites[i].name + "' onclick='redirect(" + jsob.sites[i].lat + "," + jsob.sites[i].lot + "," + "`" + jsob.sites[i].name + "`" + "," + "`" + jsob.sites[i].src + "`" + "," + "`" + jsob.sites[i].cap + "`" + ")'>Select Evacuation Site</button>" + "</div>");
+        var popup = L.popup().setContent(
+          "<div class='maincont'  id='" + jsob.sites[i].name +
+
+
+
+           "' ontouchstart='fill_card(" + jsob.sites[i].lat + "," + jsob.sites[i].lot + "," + "`" + jsob.sites[i].name + "`" + "," + "`" + jsob.sites[i].src + "`" + "," + "`" + jsob.sites[i].cap +  "," + "`" + jsob.sites[i].built + "`" + "," + "`" + jsob.sites[i].equip + "`" + "," + "`" + jsob.sites[i].evacclass + "`" +"," + "`" + jsob.sites[i].lastimp + "`" +
+              ")'>" + '<p>' + jsob.sites[i].name + '' + "</p>" 
+
+
+
+
+          + "<button class='btn btn-primary' id='" + jsob.sites[i].name + "' onclick='redirect("
+
+
+          + jsob.sites[i].lat + "," + jsob.sites[i].lot + "," + "`" + jsob.sites[i].name + "`" + "," + "`" + jsob.sites[i].src + "`" + "," + "`" + jsob.sites[i].cap + "`" + "," + "`" + jsob.sites[i].built + "`" + "," + "`" + jsob.sites[i].equip + "`" + "," + "`" + jsob.sites[i].evacclass + "`" +"," + "`" + jsob.sites[i].lastimp + "`" +
+
+
+           ")'>Select Evacuation Site</button>" +
+
+
+          "</div>");
         var m = L.marker([jsob.sites[i].lat, jsob.sites[i].lot], {icon: schoolIcon
         }).on('click', function(e) { 
           fill_card(jsob.sites[i].lat, jsob.sites[i].lot, jsob.sites[i].name, jsob.sites[i].src, jsob.sites[i].cap)
@@ -551,7 +584,27 @@ getAJAXData().done(function(res){
 
 
       } else if(jsob.sites[i].type === "hall") {
-        var popup = L.popup().setContent("<div class='maincont' id='" + jsob.sites[i].name + "' onclick='fill_card(" + jsob.sites[i].lat + "," + jsob.sites[i].lot + "," + "`" + jsob.sites[i].name + "`" + "," + "`" + jsob.sites[i].src + "`" + "," + "`" + jsob.sites[i].cap + "`" + ")'>" + '<p>' + jsob.sites[i].name + '' + "</p>" + "<button class='btn  btn-primary' id='" + jsob.sites[i].name + "' onclick='redirect(" + jsob.sites[i].lat + "," + jsob.sites[i].lot + "," + "`" + jsob.sites[i].name + "`" + "," + "`" + jsob.sites[i].src + "`" + "," + "`" + jsob.sites[i].cap + "`" + ")'>Select Evacuation Site</button>" + "</div>");
+        var popup = L.popup().setContent(
+          "<div class='maincont'  id='" + jsob.sites[i].name +
+
+
+
+           "' ontouchstart='fill_card(" + jsob.sites[i].lat + "," + jsob.sites[i].lot + "," + "`" + jsob.sites[i].name + "`" + "," + "`" + jsob.sites[i].src + "`" + "," + "`" + jsob.sites[i].cap +  "," + "`" + jsob.sites[i].built + "`" + "," + "`" + jsob.sites[i].equip + "`" + "," + "`" + jsob.sites[i].evacclass + "`" +"," + "`" + jsob.sites[i].lastimp + "`" +
+              ")'>" + '<p>' + jsob.sites[i].name + '' + "</p>" 
+
+
+
+
+          + "<button class='btn btn-primary' id='" + jsob.sites[i].name + "' onclick='redirect("
+
+
+          + jsob.sites[i].lat + "," + jsob.sites[i].lot + "," + "`" + jsob.sites[i].name + "`" + "," + "`" + jsob.sites[i].src + "`" + "," + "`" + jsob.sites[i].cap + "`" + "," + "`" + jsob.sites[i].built + "`" + "," + "`" + jsob.sites[i].equip + "`" + "," + "`" + jsob.sites[i].evacclass + "`" +"," + "`" + jsob.sites[i].lastimp + "`" +
+
+
+           ")'>Select Evacuation Site</button>" +
+
+
+          "</div>");
         var m = L.marker([jsob.sites[i].lat, jsob.sites[i].lot], {icon: courtIcon
         }).on('click', function(e) {
           fill_card(jsob.sites[i].lat, jsob.sites[i].lot, jsob.sites[i].name, jsob.sites[i].src, jsob.sites[i].cap)
@@ -588,8 +641,6 @@ getAJAXData().done(function(res){
         useCors: false
       }).addTo(map);
 
-
-    var bound = L.geoJSON(geojsonFeaturde);
     var myLayer = L.geoJSON();
     myLayer.addData(MHS);
     myLayer.addData(PHS);
