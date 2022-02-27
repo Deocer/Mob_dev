@@ -13,7 +13,7 @@ function sysalarm(weather,water,alarm) {
 cordova.plugins.notification.local.schedule({
     id : 69,
     title: 'Status Update',
-    text: 'Weather: '+weather+', Water Level:'+water+' ,Alarm Level:'+alarm,
+    text: 'Weather: '+weather+', Water:'+water+' ,Alarm:'+alarm,
     foreground: true
 });
 
@@ -24,7 +24,7 @@ function upsysalarm(weather,water,alarm) {
 cordova.plugins.notification.local.schedule({
     id : 69,
     title: 'Status Update',
-    text: 'Weather: '+weather+', Water Level:'+water+' ,Alarm Level:'+alarm,
+    text: 'Weather: '+weather+', Water:'+water+' ,Level:'+alarm,
     foreground: true
 });
 

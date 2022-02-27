@@ -24,8 +24,8 @@ body {
 }
 
 .nav{
-  max-width: 40vw;
-  max-height: 30vh;
+  max-width: 60vw;
+  max-height: 40vh;
 }  
 
 </style>
@@ -35,13 +35,13 @@ body {
 <body style="max-width: 99vw; overflow-x: hidden;z-index: 0; min-height: 100vh; margin:0; padding:0; background-color: white;">
      <div class="row container-fluid m-1 rounded-pill bg-light text-dark shadow-lg p-2" id="weathercont2">
         <div class="col content-center text-center">
-          <img src="" class="card-img" id="secweathericon" alt="..." style="width:90px; height: 90px; margin:auto;">
+          <img src="" class="card-img" id="secweathericon" alt="..." style="width:50px; height: 50px; margin:auto;">
         </div>
         <div class="col content-center text-center">
-          <h1 id="temp" style="font-size:5rem"></h1>
+          <h1 id="temp" style="font-size:2rem"></h1>
         </div>
         <div class="col content-center text-center">
-          <h1 id="wtr" style="font-size:5rem"></h1>
+          <h1 id="wtr" style="font-size:2rem"></h1>
         </div>
       </div>
 
@@ -52,18 +52,18 @@ body {
 
       <div class="container-fluid d-flex justify-content-center">
         
-        <div class="card shadow-lg" style="width: 70vw;">
+        <div class="card shadow-lg" style="width: 85vw;">
           <img src="" id="pimg" class="card-img-top" alt="..." style="height: 30vh;">
           <div class="card-body p-5">
             <div class="container-fluid mx-auto shadow-primary shadow-sm" style="background-color: transparent;">
               
-              <h1 class="text-lead text-center text-muted" style="font-size:50px; font-weight: bolder; color: black; background-color: transparent;">EVACUATION SITE GUIDE</h1>
+              <h1 class="text-lead text-center text-muted" style="font-size:1.5rem; font-weight: bolder; color: black; background-color: transparent;">EVACUATION SITE GUIDE</h1>
 
             </div>
-              <div class="p-5" style="font-size:2.5rem;">
+              <div class="p-2" style="font-size:1.5rem;">
                 
                 <p class="card-text text-muted" id="loctab" ></p>
-                <p class="card-text text-muted" id="cap" ></p>
+                <p class="card-text text-muted" >Capacity    :<span id="cap"></span> </p>
                 <p class="card-text text-muted" >Built     : <span id="bb"></span></p>
                 <p class="card-text text-muted" >Last used : <span id="last"></span></p>
                 <p class="card-text text-muted" >Class     : Emergency Evacuation Site</p>
@@ -71,9 +71,9 @@ body {
                 <p class="card-text"><i class="fas fa-map-marker-alt text-muted"></i> <span id="at" class="text-muted"></span> <span id="on" class="text-muted"></span> .</p>
 
               </div>
-              <button type="button" id="directions" class="btn btn-primary w-100" style="font-size:3rem;"><b>Show Directions <i class="fas fa-map-marker-alt"></i></b></button>
-              <button type="button" id="nodirections" class="btn btn-primary w-100" style="font-size:3rem;"><b>Remove Directions <i class="fas fa-map-marker-alt"></i></b></button>
-              <a href="main.html" class="btn btn-danger text-light w-100" style="font-size:3rem;"><i class="fa fa-chevron-left" aria-hidden="true"> </i> Back to Main page</a>
+              <button type="button" id="directions" class="btn btn-primary w-100" style="font-size:1rem;"><b>Show Directions <i class="fas fa-map-marker-alt"></i></b></button>
+              <button type="button" id="nodirections" class="btn btn-primary w-100" style="font-size:1rem;"><b>Remove Directions <i class="fas fa-map-marker-alt"></i></b></button>
+              <a href="main.html" class="btn btn-danger text-light w-100" style="font-size:1rem;"><i class="fa fa-chevron-left" aria-hidden="true"> </i> Back to Main page</a>
           </div>
         </div>
 
@@ -125,17 +125,21 @@ window.onload = function() {
           m = n.getMonth() + 1;
           d = n.getDate();
           document.getElementById("temp").textContent = weather.current.feelslike_c + "°C";
-          var allert ='';
+           var allert ='';
               if (lvl < 15 ) {
                 allert = 'None';
-              }else if (lvl == 15 && lvl < 16) {
+                console.log(allert);
+              }else if ( lvl == 15 || lvl < 16) {
                 allert = 'First Alarm'
-              }else if (lvl == 16 && lvl < 18) {
+                console.log(allert);
+              }else if (lvl == 16 || lvl < 18) {
                 allert = 'Second Alarm'
+                console.log(allert);
               }else if (lvl == 18 || lvl > 18 ) {
-                allert = 'None'
+                allert = 'Third Alarm'
+                console.log(allert);
               }
-          sysalarm(weather.current.condition.text, lvl, allert);
+              sysalarm(weather.current.condition.text, lvl, allert);
           console.log(weather);
         },
         error: function(error) {
@@ -143,7 +147,7 @@ window.onload = function() {
         }
       });
     }
-
+  
 
     document.getElementById("loctab").innerHTML = name ;
     document.getElementById("at").textContent = Lat;
@@ -158,7 +162,7 @@ window.onload = function() {
 
         L.mapquest.key = 'UBI3Wc0udk0csdys2DFuAJAdhxdX00E9';
 
-        
+       
 
         function getloc(){
           navigator.geolocation.getCurrentPosition(
@@ -172,9 +176,11 @@ window.onload = function() {
           });
         }
 
-        getloc();
+
+        addDirections(uLat,uLot);
+        //getloc();
         myTimer();
-        setInterval(getloc, 100000);
+        setInterval(getloc, 10000);
         setInterval(myTimer, 1000000);
 
 

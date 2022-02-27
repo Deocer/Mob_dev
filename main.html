@@ -127,7 +127,7 @@ body {
         <p style="font-size:2.5rem" id="wind"></p>
       </div>
       <div class="col">
-        <p style="font-size:2.5rem" id="wtr">13M</p>
+        <p style="font-size:2.5rem"><span id="wtr"></span>M</p>
       </div>
     </div>
   </div>
@@ -140,7 +140,7 @@ body {
       <h1 id="temp" style="font-size:2rem;"></h1>
     </div>
     <div class="col" style="width:30vw">
-      <h1 style="font-size:2rem;" id="wtr2"></h1>
+      <h1 style="font-size:2rem;"> <span id="wtr2" ></span>M</h1>
     </div>
   </div>
 
@@ -319,7 +319,22 @@ function myTimer() {
       document.getElementById("weather").textContent = weather.current.condition.text;
       document.getElementById("wind").textContent = weather.current.wind_kph + "km/h";
       document.getElementById("c").textContent = weather.current.feelslike_c + "°C";
-      upsysalarm(weather.current.condition.text, '13M', 'None');
+      var wtrlvl = document.getElementById("wtr").textContent;
+       var allert ='';
+          if (wtrlvl < 15 ) {
+            allert = 'None';
+            console.log(allert);
+          }else if ( wtrlvl == 15 || wtrlvl < 16) {
+            allert = 'First Alarm'
+            console.log(allert);
+          }else if (wtrlvl == 16 || wtrlvl < 18) {
+            allert = 'Second Alarm'
+            console.log(allert);
+          }else if (wtrlvl == 18 || wtrlvl > 18 ) {
+            allert = 'Third Alarm'
+            console.log(allert);
+          }
+        upsysalarm(weather.current.condition.text, wtrlvl, allert);
       console.log(weather);
     },
     error: function(error) {
@@ -351,8 +366,9 @@ function setAJAXData() {
         // the data is converted to JSON 
       var sjsob = JSON.parse(ssites);
 
-      document.getElementById("wtr").textContent = sjsob.wtr[1].data+"M";
-      document.getElementById("wtr2").textContent = sjsob.wtr[1].data+"M";
+      document.getElementById("wtr").textContent = sjsob.wtr[1].data;
+      document.getElementById("wtr2").textContent = sjsob.wtr[1].data;
+      console.log(sjsob.wtr[1].data);
 
       },
       error: function(error) {
@@ -409,20 +425,15 @@ function fill_card(lat, lot, evac, src, cap, built, equip , eclass, lst) {
 </script>
 
 
+<script type="text/javascript">
 
+setAJAXData().done(function(res){
 
+var llt = sessionStorage.getItem('ulat');
+var lln = sessionStorage.getItem('ulot');
 
-<script type="text/javascript" defer>
-
-
-//gets stored coordinates from the index.html  
-var lt = sessionStorage.getItem('ulat');
-var ln = sessionStorage.getItem('ulot');
-
-
-//Fires a weather alert
 $.ajax({
-  url: "http://api.weatherapi.com/v1/current.json?key=b183a0ff45b54688a7380107220501&q=" + lt + ',' + ln + "&aqi=yes",
+  url: "http://api.weatherapi.com/v1/current.json?key=b183a0ff45b54688a7380107220501&q=" + llt + ',' + lln + "&aqi=yes",
   type: "GET",
   success: function(result) {
     var tojson = JSON.stringify(result);
@@ -443,12 +454,16 @@ $.ajax({
     var allert ='';
     if (wtrlvl < 15 ) {
       allert = 'None';
-    }else if ( wtrlvl == 15 && wtrlvl < 16) {
+      console.log(allert);
+    }else if ( wtrlvl == 15 || wtrlvl < 16) {
       allert = 'First Alarm'
-    }else if (wtrlvl == 16 && wtrlvl < 18) {
+      console.log(allert);
+    }else if (wtrlvl == 16 || wtrlvl < 18) {
       allert = 'Second Alarm'
+      console.log(allert);
     }else if (wtrlvl == 18 || wtrlvl > 18 ) {
       allert = 'Third Alarm'
+      console.log(allert);
     }
     sysalarm(weather.current.condition.text, wtrlvl, allert);
     console.log(weather);
@@ -463,14 +478,13 @@ $.ajax({
     alert("error: " + error);
   }
 });
-</script>
 
 
-<script type="text/javascript">
 
-setAJAXData();  
+});
+setInterval(setAJAXData, 100000);  
 setInterval(myTimer, 100000);
-setInterval(setAJAXData, 100000);
+
 //Main map function
 getAJAXData().done(function(res){
 
